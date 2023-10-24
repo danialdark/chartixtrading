@@ -292,7 +292,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
 
         // this function will make other candles
-        const makeOtherCandles = async (allCandles, smallestTimeFrame, myStartTime, lastVolume) => {
+        const makeOtherCandles = async (allCandles, smallestTimeFrame, myStartTime, lastVolume, symbol) => {
             // now we will make other candles from 1 minute last candle
             const shouldMakeAllTimeFrames = ['1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w', '1M'];
 
@@ -567,7 +567,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                                         v: allCandles[timeframe][1].v,
                                     };
 
-                                    saveCandleDataToPostgreSQL(symbol, timeFrame, shouldSaveCandle);
+                                    saveCandleDataToPostgreSQL(symbol, timeframe, shouldSaveCandle);
                                 }
                             }
 
@@ -642,7 +642,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                 }
 
 
-                makeOtherCandles(allCandles, "1m", "", lastVolume)
+                makeOtherCandles(allCandles, "1m", "", lastVolume, symbol)
 
 
 
