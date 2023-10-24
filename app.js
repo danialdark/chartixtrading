@@ -647,13 +647,13 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
 
 
-                // Check if one second has passed since the last update
-                // // Save the candleData to filteredData
-                filteredData[timeFrame] = candleData;
+                // // Check if one second has passed since the last update
+                // // // Save the candleData to filteredData
+                // filteredData[timeFrame] = candleData;
 
-                // Save filteredData to Redis
-                redis.pipeline().set(`${symbol.toLowerCase()}`, JSON.stringify(filteredData), 'EX', 720).exec();
-                // Update the last Redis update timestamp
+                // // Save filteredData to Redis
+                // redis.pipeline().set(`${symbol.toLowerCase()}`, JSON.stringify(filteredData), 'EX', 720).exec();
+                // // Update the last Redis update timestamp
 
 
 
