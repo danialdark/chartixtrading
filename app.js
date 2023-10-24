@@ -645,21 +645,16 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                 makeOtherCandles(allCandles, "1m", "", lastVolume)
 
 
-                // Calculate the time elapsed since the last Redis update
-                const currentTime = Date.now();
-                const timeElapsed = currentTime - lastRedisUpdateTimestamp;
 
 
                 // Check if one second has passed since the last update
-                if (timeElapsed >= 100) {
-                    // // Save the candleData to filteredData
-                    filteredData[timeFrame] = candleData;
+                // // Save the candleData to filteredData
+                filteredData[timeFrame] = candleData;
 
-                    // Save filteredData to Redis
-                    redis.pipeline().set(`${symbol.toLowerCase()}`, JSON.stringify(filteredData), 'EX', 720).exec();
-                    // Update the last Redis update timestamp
-                    lastRedisUpdateTimestamp = currentTime;
-                }
+                // Save filteredData to Redis
+                redis.pipeline().set(`${symbol.toLowerCase()}`, JSON.stringify(filteredData), 'EX', 720).exec();
+                // Update the last Redis update timestamp
+
 
 
 
