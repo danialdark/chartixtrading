@@ -642,7 +642,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                 }
 
 
-                makeOtherCandles(allCandles, "1m", "", lastVolume, symbol)
+                makeOtherCandles(allCandles, "1m", "", lastVolume, symbolName)
 
 
 
@@ -662,6 +662,8 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
 
         }
+
+
         if (myResult != null) {
             shower(myResult)
         }
