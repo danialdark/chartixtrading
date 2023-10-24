@@ -252,7 +252,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
         async function saveCandleDataToPostgreSQL(symbol, timeFrame, newCandle) {
             // const fetchedSymbolId = await getSymbolIdByName(symbol.toUpperCase());
-            const timestampMilliseconds = newCandle.t; // Unix timestamp in milliseconds
+            const timestampMilliseconds = newCandle.t * 1000; // Unix timestamp in milliseconds
             const formattedDateTime = moment(timestampMilliseconds).format('YYYY-MM-DD HH:mm:ss');
 
             try {
