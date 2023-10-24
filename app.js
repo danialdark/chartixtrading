@@ -567,7 +567,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                                         v: allCandles[timeframe][1].v,
                                     };
 
-                                    saveCandleDataToPostgreSQL(symbol, timeframe, shouldSaveCandle);
+                                    saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
                                 }
                             }
 
@@ -636,7 +636,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                                 v: allCandles['1m'][1].v,
                             };
 
-                            saveCandleDataToPostgreSQL(symbol, timeFrame, shouldSaveCandle);
+                            saveCandleDataToPostgreSQL(symbolName, timeFrame, shouldSaveCandle);
                         }
                     }
                 }
