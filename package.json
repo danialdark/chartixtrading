@@ -1,0 +1,23 @@
+{
+  "name": "tradingchartix",
+  "version": "1.0.0",
+  "description": "\\",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "global-tunnel": "^1.2.0",
+    "global-tunnel-ng": "^2.7.1",
+    "https-proxy-agent": "^7.0.2",
+    "ioredis": "^5.3.2",
+    "moment": "^2.29.4",
+    "pg-promise": "^11.5.4",
+    "pgp": "^0.1.0",
+    "websocket": "^1.0.34",
+    "ws": "^8.14.2"
+  }
+}
