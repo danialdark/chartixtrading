@@ -4,11 +4,12 @@ const db = require('./db'); // Adjust the path as needed
 const Redis = require('ioredis');
 
 const redis = new Redis({
-    host: '127.0.0.1',
+    host: 'localhost',
     port: '6379',
     password: 'D@n!@l12098',
     enableCompression: true,
 });
+var pipeline = redis.pipeline();
 
 
 // const serverUrl = 'wss://data.tradingview.com/socket.io/websocket?from=chart';
@@ -16,29 +17,44 @@ const serverUrl = 'wss://data-iln1.tradingview.com/socket.io/websocket?from=char
 
 const headers = {
     Origin: 'https://www.tradingview.com',
-
 };
 
 const tableMap = {
-    "1M": "one_month_spot_candles",
-    "1w": "one_week_spot_candles",
-    "1d": "one_day_spot_candles",
-    "4h": "four_hour_spot_candles",
-    "1h": "one_hour_spot_candles",
-    "30m": "thirty_minute_spot_candles",
-    "15m": "fifteen_minute_spot_candles",
-    "5m": "five_minute_spot_candles",
-    "1m": "one_minut_spot_candles",
-    "1s": "one_second_spot_candles",
+    "1M": "one_month_forex_candles",
+    "1w": "one_week_forex_candles",
+    "1d": "one_day_forex_candles",
+    "4h": "four_hour_forex_candles",
+    "1h": "one_hour_forex_candles",
+    "30m": "thirty_minute_forex_candles",
+    "15m": "fifteen_minute_forex_candles",
+    "5m": "five_minute_forex_candles",
+    "1m": "one_minute_forex_candles",
+    "1s": "one_second_forex_candles",
+};
+
+
+const redisTimeFrames = {
+    "1M": "1M",
+    "1w": "1W",
+    "1d": "1D",
+    "4h": "240",
+    "1h": "60",
+    "30m": "30",
+    "15m": "15",
+    "5m": "5",
+    "1m": "1",
+    "1s": "1"
 };
 
 
 
 const tokenMap = {
     'BINANCE': { token: "qs_NMWrtw0wr0l4", sdsSystem: "sds_sym_1", timeframe: 1 },
-    'OANDA': { token: "qs_NMWrtw0wr0l4", sdsSystem: "sds_sym_1", timeframe: 1, openTime: "22:00" },
+    'OANDA': { token: "qs_NMWrtw0wr0l4", sdsSystem: "sds_sym_1", timeframe: 1 },
     'TVC': { token: "cs_JTzTazd4Mtuu", sdsSystem: "sds_sym_1", timeframe: 1 },
     'INTOTHEBLOCK': { token: "cs_VgyAnZkuYrSQ", sdsSystem: "sds_sym_1", timeframe: 5 },
+    'XETR': { token: "cs_hSUZOrtZkU8B", sdsSystem: "sds_sym_1", timeframe: 5 },
+    'NYMEX': { token: "cs_LUzIUSS31l1H", sdsSystem: "sds_sym_1", timeframe: 5 },
     'CRYPTOCAP': { token: "cs_YoDPLuZuk1Nw", sdsSystem: "sds_sym_1", timeframe: 1 },
     'NASDAQ': { token: "cs_pP9zg3HoX6qW", sdsSystem: "sds_sym_1", timeframe: 1 },
     'ECONOMICS': { token: "cs_N7G5G2KqaVey", sdsSystem: "sds_sym_1", timeframe: 5 },
@@ -52,8 +68,6 @@ const tokenMap = {
     'COMEX': { token: "cs_5UowB3gE6eqz", sdsSystem: "sds_sym_1", timeframe: 1 },
     'MCX': { token: "cs_HPvg93fZ6wIB", sdsSystem: "sds_sym_1", timeframe: 1 },
     'FX': { token: "cs_Aoj8CvPqSsks", sdsSystem: "sds_sym_1", timeframe: 1 },
-    'XETR': { token: "cs_hSUZOrtZkU8B", sdsSystem: "sds_sym_1", timeframe: 5 },
-    'NYMEX': { token: "cs_LUzIUSS31l1H", sdsSystem: "sds_sym_1", timeframe: 5 },
 }
 
 
@@ -161,6 +175,78 @@ const symbols = {
 }
 
 
+
+
+
+async function checkKeyInRedis(symbolName, timeframe, allCandles, oldTimeFrame) {
+    const key = `${timeframe}-${symbolName.toLowerCase()}`;
+    var results = await redis.get(key);
+    const value = JSON.parse(results);
+    if (allCandles[oldTimeFrame].length > 0 && value != null) {
+        allCandles[oldTimeFrame][0].t = value[0].open_time
+        allCandles[oldTimeFrame][0].T = value[0].close_time
+        allCandles[oldTimeFrame][0].o = value[0].open_price
+        allCandles[oldTimeFrame][0].h = value[0].high_price
+        allCandles[oldTimeFrame][0].l = value[0].low_price
+        allCandles[oldTimeFrame][0].c = value[0].close_price
+        allCandles[oldTimeFrame][0].v = value[0].volumn > allCandles[oldTimeFrame][0].v ? value[0].volumn : allCandles[oldTimeFrame][0].v
+
+
+        if (allCandles[oldTimeFrame].length > 1) {
+            allCandles[oldTimeFrame][1].t = value[1].open_time
+            allCandles[oldTimeFrame][1].T = value[1].close_time
+            allCandles[oldTimeFrame][1].o = value[1].open_price
+            allCandles[oldTimeFrame][1].h = value[1].high_price
+            allCandles[oldTimeFrame][1].l = value[1].low_price
+            allCandles[oldTimeFrame][1].c = value[1].close_price
+            allCandles[oldTimeFrame][1].v = value[1].volumn > allCandles[oldTimeFrame][1].v ? value[1].volumn : allCandles[oldTimeFrame][1].v
+
+        } else {
+            allCandles[oldTimeFrame].push({
+                "t": value[1].open_time,
+                "T": value[1].close_time,
+                "o": value[1].open_price,
+                "h": value[1].high_price,
+                "l": value[1].low_price,
+                "c": value[1].close_price,
+                "v": value[1].volumn,
+            })
+        }
+    } else {
+        if (value != null) {
+
+            allCandles[oldTimeFrame].push({
+                "t": value[0].open_time,
+                "T": value[0].close_time,
+                "o": value[0].open_price,
+                "h": value[0].high_price,
+                "l": value[0].low_price,
+                "c": value[0].close_price,
+                "v": value[0].volumn,
+
+            })
+
+            allCandles[oldTimeFrame].push({
+                "t": value[1].open_time,
+                "T": value[1].close_time,
+                "o": value[1].open_price,
+                "h": value[1].high_price,
+                "l": value[1].low_price,
+                "c": value[1].close_price,
+                "v": value[1].volumn,
+
+            })
+
+
+
+        }
+    }
+
+    return allCandles
+
+}
+
+
 function formatNumberWithTwoDecimals(number) {
     // Check if the number has a fractional part
     if (Number.isInteger(number)) {
@@ -170,7 +256,16 @@ function formatNumberWithTwoDecimals(number) {
     }
 }
 
-
+async function getSymbolIdByName(symbolName) {
+    try {
+        const query = 'SELECT id FROM forex_symbols WHERE name = $1';
+        const symbol = await db.oneOrNone(query, symbolName);
+        return symbol ? symbol.id : null;
+    } catch (error) {
+        console.error('Error:', error.message);
+        throw error;
+    }
+}
 
 
 const remover = (inputString) => {
@@ -193,12 +288,7 @@ const remover = (inputString) => {
     });
 
     if (combinedArray.length != 0) {
-        // // combinedArray.forEach(element => {
-        // //     console.log(element.p[1].sds_1.s[0].v)
 
-        // // });
-
-        // console.log(combinedArray[0].p[1].sds_1.s[0].v)
 
         return combinedArray
 
@@ -212,6 +302,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
     const ws = new WebSocket(serverUrl, {
         headers: headers
     });
+
 
     ws.on('open', () => {
         console.log(`Connected to WebSocket server ${exchange + ":" + symbolName}`);
@@ -234,15 +325,12 @@ function startStream(exchange, symbolName, resolver, allCandles) {
         ws.send(series);
     });
 
-
-
     ws.on('message', (data) => {
         const refactored = data.toString('utf-8');
 
         if (!isNaN(refactored[refactored.length - 1])) {
             ws.send(refactored);
             console.log(refactored + " sent")
-        } else {
         }
 
         setInterval(() => {
@@ -251,9 +339,15 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
 
         async function saveCandleDataToPostgreSQL(symbol, timeFrame, newCandle) {
-            // const fetchedSymbolId = await getSymbolIdByName(symbol.toUpperCase());
+            const fetchedSymbolId = await getSymbolIdByName(symbol.toUpperCase());
             const timestampMilliseconds = newCandle.t * 1000; // Unix timestamp in milliseconds
             const formattedDateTime = moment(timestampMilliseconds).format('YYYY-MM-DD HH:mm:ss');
+            const modifiedDateTime = moment(formattedDateTime, 'YYYY-MM-DD HH:mm:ss').subtract(3, 'hours').subtract(30, 'minutes');
+
+            // Get the modified date and time in the same format
+            const modifiedFormattedDateTime = modifiedDateTime.format('YYYY-MM-DD HH:mm:ss');
+            // console.log(timeFrame)
+
 
             try {
                 await db.none(
@@ -269,7 +363,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                         close_time = excluded.close_time,
                         created_at = excluded.created_at`,
                     [
-                        1313,
+                        fetchedSymbolId,
                         symbol.toUpperCase(),
                         newCandle.t,
                         newCandle.o,
@@ -278,7 +372,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                         newCandle.c,
                         newCandle.v,
                         newCandle.T,
-                        formattedDateTime,
+                        modifiedFormattedDateTime,
                     ]
                 );
 
@@ -308,11 +402,16 @@ function startStream(exchange, symbolName, resolver, allCandles) {
             const lastOneMinuteCandle = allCandles[smallestTimeFrame][0];
             const candleStamp = allCandles[smallestTimeFrame][0].t;
             const now = new Date(candleStamp * 1000);
-            const dayOfMonth = now.getDate();
-            const hourOfDay = now.getHours();
-            const minuteOfDay = now.getMinutes();
+            const dayOfMonth = now.getUTCDate();
+            const hourOfDay = now.getUTCHours();
+            const minuteOfDay = now.getUTCMinutes();
+
             if (lastOneMinuteCandle != undefined) {
-                resultArray.forEach(timeframe => {
+                for (const timeframe of resultArray) {
+
+
+                    // allCandles = await checkKeyInRedis(symbolName, redisTimeFrames[timeframe], allCandles, timeframe);
+
                     var shouldMakeCandle = false;
                     var addedTime = 0;
                     var startTime = 0;
@@ -320,6 +419,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                     switch (timeframe) {
                         case '5m':
                             if (allCandles[timeframe][0] != undefined || minuteOfDay % 5 == 0) {
+
                                 addedTime = 300;
                                 shouldMakeCandle = true;
 
@@ -386,7 +486,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                             if (allCandles[timeframe][0] != undefined || (minuteOfDay == 0 && ((hourOfDay + 3) % 4 == 0))) {
                                 addedTime = 14400;
                                 shouldMakeCandle = true;
-                                if (hourOfDay % 4 == 0) {
+                                if (minuteOfDay == 0 && ((hourOfDay + 3) % 4 == 0)) {
                                     startTime = lastOneMinuteCandle.t;
                                     timestamp = startTime; // Unix timestamp in seconds
                                     newV = true;
@@ -402,7 +502,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                             if (allCandles[timeframe][0] != undefined || (hourOfDay == 22 && minuteOfDay == 0)) {
                                 addedTime = 86400;
                                 shouldMakeCandle = true;
-                                if (hourOfDay == 22) {
+                                if (hourOfDay == 22 && minuteOfDay == 0) {
 
                                     startTime = lastOneMinuteCandle.t;
                                     timestamp = startTime; // Unix timestamp in seconds
@@ -455,7 +555,6 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                         default:
                             shouldMakeCandle = false;
                             addedTime = 0;
-
                             break;
                     }
 
@@ -466,66 +565,49 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
                         // this is for v
                         if (!newV && allCandles[timeframe][0] != undefined) {
+                            // console.log("__________________________________________________________")
+                            // console.log(timeframe)
+                            // console.log("this is lastVolume:" + lastVolume)
+                            // console.log("this is lastOneMinuteCandle:" + lastOneMinuteCandle.v)
+                            // console.log("this is allCandles:" + allCandles[timeframe][0].v)
+                            // console.log("__________________________________________________________")
 
-                            if (lastOneMinuteCandle.v >= lastVolume && allCandles[timeframe][0].v > 0) {
+
+                            if (lastOneMinuteCandle.v - lastVolume > 0) {
                                 shouldBe = allCandles[timeframe][0].v + (lastOneMinuteCandle.v - lastVolume)
-                                openPrice = allCandles[timeframe][0].o;
-
-                                if (allCandles[timeframe][0].h < lastOneMinuteCandle.h) {
-                                    high = lastOneMinuteCandle.h
-                                } else {
-                                    high = allCandles[timeframe][0].h
-                                }
-
-                                if (allCandles[timeframe][0].l > lastOneMinuteCandle.l) {
-                                    low = lastOneMinuteCandle.l
-                                } else {
-                                    low = allCandles[timeframe][0].l
-                                }
-
-                                closeTime = allCandles[timeframe][0].t + addedTime
-
-
-
-
-
                             } else {
-                                shouldBe = allCandles[timeframe][0].v + lastOneMinuteCandle.v
-                                openPrice = allCandles[timeframe][0].o;
-                                closeTime = allCandles[timeframe][0].t + addedTime
-
-
-                                if (allCandles[timeframe][0].h < lastOneMinuteCandle.h) {
-                                    high = lastOneMinuteCandle.h
+                                if (lastVolume != lastOneMinuteCandle.v) {
+                                    shouldBe = allCandles[timeframe][0].v + lastOneMinuteCandle.v
                                 } else {
-                                    high = allCandles[timeframe][0].h
-                                }
-
-                                if (allCandles[timeframe][0].l > lastOneMinuteCandle.l) {
-                                    low = lastOneMinuteCandle.l
-                                } else {
-                                    low = allCandles[timeframe][0].l
+                                    shouldBe = allCandles[timeframe][0].v
                                 }
                             }
+
+                            openPrice = allCandles[timeframe][0].o;
+                            closeTime = allCandles[timeframe][0].t + addedTime
+
+
+                            if (allCandles[timeframe][0].h < lastOneMinuteCandle.h) {
+                                high = lastOneMinuteCandle.h
+                            } else {
+                                high = allCandles[timeframe][0].h
+                            }
+
+                            if (allCandles[timeframe][0].l > lastOneMinuteCandle.l) {
+                                low = lastOneMinuteCandle.l
+                            } else {
+                                low = allCandles[timeframe][0].l
+                            }
                         } else {
+                            // console.log("####################################")
                             shouldBe = lastOneMinuteCandle.v;
                             openPrice = lastOneMinuteCandle.o;
                             high = lastOneMinuteCandle.h
                             low = lastOneMinuteCandle.l
                             closeTime = lastOneMinuteCandle.t + addedTime
-
-                            if (lastOneMinuteCandle.v >= lastVolume) {
-                                shouldBe = lastOneMinuteCandle.v;
-                            }
-
                         }
 
 
-                        if (allCandles[timeframe][0] != undefined) {
-
-                        } else {
-
-                        }
 
 
                         const newCandle = {
@@ -575,9 +657,10 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                         }
                     }
 
-                });
 
 
+                }
+                redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles), 'EX', 720).exec();
 
             }
             // console.log("minute is " + minuteOfDay)
@@ -641,19 +724,17 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                     }
                 }
 
-
                 makeOtherCandles(allCandles, "1m", "", lastVolume, symbolName)
 
+                redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles), 'EX', 720).exec();
 
 
 
-                // // Check if one second has passed since the last update
-                // // // Save the candleData to filteredData
-                // filteredData[timeFrame] = candleData;
 
-                // // Save filteredData to Redis
-                // redis.pipeline().set(`${symbol.toLowerCase()}`, JSON.stringify(filteredData), 'EX', 720).exec();
-                // // Update the last Redis update timestamp
+                console.log(allCandles)
+
+
+
 
 
 
