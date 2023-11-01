@@ -178,73 +178,73 @@ const symbols = {
 
 
 
-async function checkKeyInRedis(symbolName, timeframe, allCandles, oldTimeFrame) {
-    const key = `${timeframe}-${symbolName.toLowerCase()}`;
-    var results = await redis.get(key);
-    const value = JSON.parse(results);
-    if (allCandles[oldTimeFrame].length > 0 && value != null) {
-        allCandles[oldTimeFrame][0].t = value[0].open_time
-        allCandles[oldTimeFrame][0].T = value[0].close_time
-        allCandles[oldTimeFrame][0].o = value[0].open_price
-        allCandles[oldTimeFrame][0].h = value[0].high_price
-        allCandles[oldTimeFrame][0].l = value[0].low_price
-        allCandles[oldTimeFrame][0].c = value[0].close_price
-        allCandles[oldTimeFrame][0].v = value[0].volumn > allCandles[oldTimeFrame][0].v ? value[0].volumn : allCandles[oldTimeFrame][0].v
+// async function checkKeyInRedis(symbolName, timeframe, allCandles, oldTimeFrame) {
+//     const key = `${timeframe}-${symbolName.toLowerCase()}`;
+//     var results = await redis.get(key);
+//     const value = JSON.parse(results);
+//     if (allCandles[oldTimeFrame].length > 0 && value != null) {
+//         allCandles[oldTimeFrame][0].t = value[0].open_time
+//         allCandles[oldTimeFrame][0].T = value[0].close_time
+//         allCandles[oldTimeFrame][0].o = value[0].open_price
+//         allCandles[oldTimeFrame][0].h = value[0].high_price
+//         allCandles[oldTimeFrame][0].l = value[0].low_price
+//         allCandles[oldTimeFrame][0].c = value[0].close_price
+//         allCandles[oldTimeFrame][0].v = value[0].volumn > allCandles[oldTimeFrame][0].v ? value[0].volumn : allCandles[oldTimeFrame][0].v
 
 
-        if (allCandles[oldTimeFrame].length > 1) {
-            allCandles[oldTimeFrame][1].t = value[1].open_time
-            allCandles[oldTimeFrame][1].T = value[1].close_time
-            allCandles[oldTimeFrame][1].o = value[1].open_price
-            allCandles[oldTimeFrame][1].h = value[1].high_price
-            allCandles[oldTimeFrame][1].l = value[1].low_price
-            allCandles[oldTimeFrame][1].c = value[1].close_price
-            allCandles[oldTimeFrame][1].v = value[1].volumn > allCandles[oldTimeFrame][1].v ? value[1].volumn : allCandles[oldTimeFrame][1].v
+//         if (allCandles[oldTimeFrame].length > 1) {
+//             allCandles[oldTimeFrame][1].t = value[1].open_time
+//             allCandles[oldTimeFrame][1].T = value[1].close_time
+//             allCandles[oldTimeFrame][1].o = value[1].open_price
+//             allCandles[oldTimeFrame][1].h = value[1].high_price
+//             allCandles[oldTimeFrame][1].l = value[1].low_price
+//             allCandles[oldTimeFrame][1].c = value[1].close_price
+//             allCandles[oldTimeFrame][1].v = value[1].volumn > allCandles[oldTimeFrame][1].v ? value[1].volumn : allCandles[oldTimeFrame][1].v
 
-        } else {
-            allCandles[oldTimeFrame].push({
-                "t": value[1].open_time,
-                "T": value[1].close_time,
-                "o": value[1].open_price,
-                "h": value[1].high_price,
-                "l": value[1].low_price,
-                "c": value[1].close_price,
-                "v": value[1].volumn,
-            })
-        }
-    } else {
-        if (value != null) {
+//         } else {
+//             allCandles[oldTimeFrame].push({
+//                 "t": value[1].open_time,
+//                 "T": value[1].close_time,
+//                 "o": value[1].open_price,
+//                 "h": value[1].high_price,
+//                 "l": value[1].low_price,
+//                 "c": value[1].close_price,
+//                 "v": value[1].volumn,
+//             })
+//         }
+//     } else {
+//         if (value != null) {
 
-            allCandles[oldTimeFrame].push({
-                "t": value[0].open_time,
-                "T": value[0].close_time,
-                "o": value[0].open_price,
-                "h": value[0].high_price,
-                "l": value[0].low_price,
-                "c": value[0].close_price,
-                "v": value[0].volumn,
+//             allCandles[oldTimeFrame].push({
+//                 "t": value[0].open_time,
+//                 "T": value[0].close_time,
+//                 "o": value[0].open_price,
+//                 "h": value[0].high_price,
+//                 "l": value[0].low_price,
+//                 "c": value[0].close_price,
+//                 "v": value[0].volumn,
 
-            })
+//             })
 
-            allCandles[oldTimeFrame].push({
-                "t": value[1].open_time,
-                "T": value[1].close_time,
-                "o": value[1].open_price,
-                "h": value[1].high_price,
-                "l": value[1].low_price,
-                "c": value[1].close_price,
-                "v": value[1].volumn,
+//             allCandles[oldTimeFrame].push({
+//                 "t": value[1].open_time,
+//                 "T": value[1].close_time,
+//                 "o": value[1].open_price,
+//                 "h": value[1].high_price,
+//                 "l": value[1].low_price,
+//                 "c": value[1].close_price,
+//                 "v": value[1].volumn,
 
-            })
+//             })
 
 
 
-        }
-    }
+//         }
+//     }
 
-    return allCandles
+//     return allCandles
 
-}
+// }
 
 
 function formatNumberWithTwoDecimals(number) {
@@ -346,7 +346,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
             // Get the modified date and time in the same format
             const modifiedFormattedDateTime = modifiedDateTime.format('YYYY-MM-DD HH:mm:ss');
-            // console.log(timeFrame)
+            console.log("i want to save")
 
 
             try {
