@@ -343,9 +343,9 @@ function startStream(exchange, symbolName, resolver, allCandles) {
             const timestampMilliseconds = newCandle.t * 1000; // Unix timestamp in milliseconds
             // const formattedDateTime = moment(timestampMilliseconds).format('YYYY-MM-DD HH:mm:ss');
             // const modifiedDateTime = moment(formattedDateTime, 'YYYY-MM-DD HH:mm:ss').subtract(3, 'hours').subtract(30, 'minutes');
-            const modifiedDateTime = moment(timestampMilliseconds).utc().format('YYYY-MM-DD HH:mm:ss');
+            const modifiedFormattedDateTime = moment(timestampMilliseconds).utc().format('YYYY-MM-DD HH:mm:ss');
             // Get the modified date and time in the same format
-            const modifiedFormattedDateTime = modifiedDateTime.format('YYYY-MM-DD HH:mm:ss');
+            // const modifiedFormattedDateTime = modifiedDateTime.format('YYYY-MM-DD HH:mm:ss');
 
 
             try {
