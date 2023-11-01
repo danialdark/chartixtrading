@@ -296,7 +296,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                         newCandle.h,
                         newCandle.l,
                         newCandle.c,
-                        newCandle.v,
+                        newCandle.v != null ? newCandle.v : 0,
                         newCandle.T,
                         modifiedFormattedDateTime,
                     ]
