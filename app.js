@@ -341,9 +341,9 @@ function startStream(exchange, symbolName, resolver, allCandles) {
         async function saveCandleDataToPostgreSQL(symbol, timeFrame, newCandle) {
             const fetchedSymbolId = await getSymbolIdByName(symbol.toUpperCase());
             const timestampMilliseconds = newCandle.t * 1000; // Unix timestamp in milliseconds
-            const formattedDateTime = moment(timestampMilliseconds).format('YYYY-MM-DD HH:mm:ss');
-            const modifiedDateTime = moment(formattedDateTime, 'YYYY-MM-DD HH:mm:ss').subtract(3, 'hours').subtract(30, 'minutes');
-
+            // const formattedDateTime = moment(timestampMilliseconds).format('YYYY-MM-DD HH:mm:ss');
+            // const modifiedDateTime = moment(formattedDateTime, 'YYYY-MM-DD HH:mm:ss').subtract(3, 'hours').subtract(30, 'minutes');
+            const modifiedDateTime = moment(timestampMilliseconds).utc().format('YYYY-MM-DD HH:mm:ss');
             // Get the modified date and time in the same format
             const modifiedFormattedDateTime = modifiedDateTime.format('YYYY-MM-DD HH:mm:ss');
 
@@ -717,7 +717,6 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                                 o: allCandles['1m'][1].o,
                                 v: allCandles['1m'][1].v,
                             };
-                            console.log("hi")
 
                             saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
                         }
