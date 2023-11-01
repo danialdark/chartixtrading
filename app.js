@@ -346,7 +346,6 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
             // Get the modified date and time in the same format
             const modifiedFormattedDateTime = modifiedDateTime.format('YYYY-MM-DD HH:mm:ss');
-            console.log("i want to save")
 
 
             try {
@@ -718,6 +717,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                                 o: allCandles['1m'][1].o,
                                 v: allCandles['1m'][1].v,
                             };
+                            console.log("hi")
 
                             saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
                         }
