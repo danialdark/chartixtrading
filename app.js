@@ -257,7 +257,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
         if (!isNaN(refactored[refactored.length - 1])) {
             ws.send(refactored);
-            console.log(refactored + " sent")
+            // console.log(refactored + " sent")
         }
 
         setInterval(() => {
