@@ -4,7 +4,7 @@ const dbConfig = {
     database: 'chartix',
     user: 'postgres',
     password: 'D@n!@l12098',
-    host: 'localhost',
+    host: '95.217.151.68',
     port: 5432, // PostgreSQL default port
 };
 
