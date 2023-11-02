@@ -6,14 +6,15 @@ const Redis = require('ioredis');
 const redis = new Redis({
     host: 'localhost',
     port: '6379',
-    password: 'D@n!@l12098',
+    password: '',
     enableCompression: true,
 });
 var pipeline = redis.pipeline();
 
 
 // const serverUrl = 'wss://data.tradingview.com/socket.io/websocket?from=chart';
-const serverUrl = 'wss://data-iln1.tradingview.com/socket.io/websocket?from=chart';
+// const serverUrl = 'wss://data-iln2.tradingview.com/socket.io/websocket?from=chart';
+const serverurltoken = ['wss://data.tradingview.com/socket.io/websocket?from=chart', 'wss://data.tradingview.com/socket.io/websocket?from=chart%2FTd7zSqMt%2F&date=2023_11_01-10_52&type=chart']
 
 const headers = {
     Origin: 'https://www.tradingview.com',
@@ -90,52 +91,52 @@ const symbols = {
     // "FRED:BAMLH0A0HYM2": { resolver: 146, shouldActive: true, active: false },
     // "ECONOMICS:USNFP": { resolver: 144, shouldActive: true, active: false },
     // "NYMEX:MBE1!": { resolver: 140, shouldActive: true, active: false },
-   // // "XETR:DAX": { resolver: 137, shouldActive: true, active: false },
-    // "CRYPTOCAP:BTC.D": { resolver: 144, shouldActive: true, active: false, times: 0 },
-    // "CRYPTOCAP:ETH.D": { resolver: 144, shouldActive: true, active: false, times: 0 },
-    // "CRYPTOCAP:USDT.D": { resolver: 145, shouldActive: true, active: false, times: 0 },
-    // "CRYPTOCAP:OTHERS.D": { resolver: 147, shouldActive: true, active: false, times: 0 },
-    // "CRYPTOCAP:Total": { resolver: 144, shouldActive: true, active: false, times: 0 },
-    // "CRYPTOCAP:Total2": { resolver: 145, shouldActive: true, active: false, times: 0 },
-    // "CRYPTOCAP:Total3": { resolver: 145, shouldActive: true, active: false, times: 0 },
-    // "CRYPTOCAP:TOTALDEFI": { resolver: 148, shouldActive: true, active: false, times: 0 },//0 is every day
-    // "NASDAQ:FSTOK300": { resolver: 144, shouldActive: true, active: false },
-    // "NASDAQ:FSTOK10": { resolver: 143, shouldActive: true, active: false },
-    // "NASDAQ:FSTOK40": { resolver: 143, shouldActive: true, active: false },
-    // "NASDAQ:FSTOK250": { resolver: 144, shouldActive: true, active: false },
-    // "NASDAQ:FSTOKAGG": { resolver: 144, shouldActive: true, active: false },
-    // "TVC:US05Y": { resolver: 138, shouldActive: true, active: false },
-    // "TVC:US10Y": { resolver: 138, shouldActive: true, active: false },
-    // "CME_MINI:NQ1!": { resolver: 142, shouldActive: true, active: false },
-    // "CME_MINI:ES1!": { resolver: 142, shouldActive: true, active: false },
-    // "CBOT_MINI:YM1!": { resolver: 143, shouldActive: true, active: false },
-    // "VANTAGE:DJ30FT": { resolver: 143, shouldActive: true, active: false },
-    // "CAPITALCOM:DXY": { resolver: 143, shouldActive: true, active: false },
-    // "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: false },
-    // "OANDA:SPX500USD": { resolver: 144, shouldActive: true, active: false },
-    // "TVC:NDQ": { resolver: 136, shouldActive: true, active: false },
-    // "TVC:US20Y": { resolver: 138, shouldActive: true, active: false },
-    // "AMEX:GDX": { resolver: 137, shouldActive: true, active: false },
-    // "AMEX:GDXJ": { resolver: 138, shouldActive: true, active: false },
-    // "AMEX:GLD": { resolver: 137, shouldActive: true, active: false },
-    // "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: false },
-    // "CAPITALCOM:US30": { resolver: 144, shouldActive: true, active: false },
-    // "NASDAQ:NDX": { resolver: 139, shouldActive: true, active: false },
-    // "CAPITALCOM:US500": { resolver: 145, shouldActive: true, active: false },
-    // "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: false },
-    // "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: false },
-    // "TVC:BXY": { resolver: 136, shouldActive: true, active: false },
-    // "TVC:EXY": { resolver: 136, shouldActive: true, active: false },
-    // "TVC:SXY": { resolver: 136, shouldActive: true, active: false },
-    // "TVC:JXY": { resolver: 136, shouldActive: true, active: false },
-    // "TVC:CXY": { resolver: 136, shouldActive: true, active: false },
-    // "TVC:AXY": { resolver: 136, shouldActive: true, active: false },
-    // "TVC:ZXY": { resolver: 136, shouldActive: true, active: false },
-    // "CAPITALCOM:HK50": { resolver: 144, shouldActive: true, active: false },
-    // "CAPITALCOM:NATURALGAS": { resolver: 150, shouldActive: true, active: false },
-    // "COMEX:HRC1!": { resolver: 140, shouldActive: true, active: false },
-    // "MCX:ZINC1!": { resolver: 139, shouldActive: true, active: false },
-    // "FX:XAUUSD": { resolver: 138, shouldActive: true, active: false },
+    "XETR:DAX": { resolver: 137, shouldActive: true, active: false },
+    "CRYPTOCAP:BTC.D": { resolver: 144, shouldActive: true, active: false, times: 0 },
+    "CRYPTOCAP:ETH.D": { resolver: 144, shouldActive: true, active: false, times: 0 },
+    "CRYPTOCAP:USDT.D": { resolver: 145, shouldActive: true, active: false, times: 0 },
+    "CRYPTOCAP:OTHERS.D": { resolver: 147, shouldActive: true, active: false, times: 0 },
+    "CRYPTOCAP:Total": { resolver: 144, shouldActive: true, active: false, times: 0 },
+    "CRYPTOCAP:Total2": { resolver: 145, shouldActive: true, active: false, times: 0 },
+    "CRYPTOCAP:Total3": { resolver: 145, shouldActive: true, active: false, times: 0 },
+    "CRYPTOCAP:TOTALDEFI": { resolver: 148, shouldActive: true, active: false, times: 0 },//0 is every day
+    "NASDAQ:FSTOK300": { resolver: 144, shouldActive: true, active: false },
+    "NASDAQ:FSTOK10": { resolver: 143, shouldActive: true, active: false },
+    "NASDAQ:FSTOK40": { resolver: 143, shouldActive: true, active: false },
+    "NASDAQ:FSTOK250": { resolver: 144, shouldActive: true, active: false },
+    "NASDAQ:FSTOKAGG": { resolver: 144, shouldActive: true, active: false },
+    "TVC:US05Y": { resolver: 138, shouldActive: true, active: false },
+    "TVC:US10Y": { resolver: 138, shouldActive: true, active: false },
+    "CME_MINI:NQ1!": { resolver: 142, shouldActive: true, active: false },
+    "CME_MINI:ES1!": { resolver: 142, shouldActive: true, active: false },
+    "CBOT_MINI:YM1!": { resolver: 143, shouldActive: true, active: false },
+    "VANTAGE:DJ30FT": { resolver: 143, shouldActive: true, active: false },
+    "CAPITALCOM:DXY": { resolver: 143, shouldActive: true, active: false },
+    "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: false },
+    "OANDA:SPX500USD": { resolver: 144, shouldActive: true, active: false },
+    "TVC:NDQ": { resolver: 136, shouldActive: true, active: false },
+    "TVC:US20Y": { resolver: 138, shouldActive: true, active: false },
+    "AMEX:GDX": { resolver: 137, shouldActive: true, active: false },
+    "AMEX:GDXJ": { resolver: 138, shouldActive: true, active: false },
+    "AMEX:GLD": { resolver: 137, shouldActive: true, active: false },
+    "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: false },
+    "CAPITALCOM:US30": { resolver: 144, shouldActive: true, active: false },
+    "NASDAQ:NDX": { resolver: 139, shouldActive: true, active: false },
+    "CAPITALCOM:US500": { resolver: 145, shouldActive: true, active: false },
+    "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: false },
+    "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: false },
+    "TVC:BXY": { resolver: 136, shouldActive: true, active: false },
+    "TVC:EXY": { resolver: 136, shouldActive: true, active: false },
+    "TVC:SXY": { resolver: 136, shouldActive: true, active: false },
+    "TVC:JXY": { resolver: 136, shouldActive: true, active: false },
+    "TVC:CXY": { resolver: 136, shouldActive: true, active: false },
+    "TVC:AXY": { resolver: 136, shouldActive: true, active: false },
+    "TVC:ZXY": { resolver: 136, shouldActive: true, active: false },
+    "CAPITALCOM:HK50": { resolver: 144, shouldActive: true, active: false },
+    "CAPITALCOM:NATURALGAS": { resolver: 150, shouldActive: true, active: false },
+    "COMEX:HRC1!": { resolver: 140, shouldActive: true, active: false },
+    "MCX:ZINC1!": { resolver: 139, shouldActive: true, active: false },
+    "FX:XAUUSD": { resolver: 138, shouldActive: true, active: false },
     "OANDA:EURUSD": { resolver: 141, shouldActive: true, active: false },
     "OANDA:GBPUSD": { resolver: 141, shouldActive: true, active: false },
     "OANDA:USDCHF": { resolver: 141, shouldActive: true, active: false },
@@ -220,8 +221,8 @@ const remover = (inputString) => {
 }
 
 
-function startStream(exchange, symbolName, resolver, allCandles) {
-    const ws = new WebSocket(serverUrl, {
+function startStream(exchange, symbolName, resolver, allCandles, number) {
+    const ws = new WebSocket(serverurltoken[number], {
         headers: headers
     });
 
@@ -676,6 +677,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
 
 async function startStreams(symbols) {
+    var counter = 0;
     while (true) {
         for (const symbol in symbols) {
             if (symbols[symbol].shouldActive && symbols[symbol].active === false) {
@@ -684,7 +686,8 @@ async function startStreams(symbols) {
 
                 await new Promise((resolve) => {
                     setTimeout(() => {
-                        startStream(pairArray[0], pairArray[1], symbols[symbol].resolver, allCandles);
+                        counter = counter == 1 ? 0 : 1;
+                        startStream(pairArray[0], pairArray[1], symbols[symbol].resolver, allCandles, counter);
                         symbols[symbol].active = true;
                         resolve();
                     }, 4000); // 2000 milliseconds = 2 seconds
