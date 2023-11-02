@@ -32,7 +32,6 @@ const tableMap = {
     "1s": "one_second_forex_candles",
 };
 
-
 const redisTimeFrames = {
     "1M": "1M",
     "1w": "1W",
@@ -45,8 +44,6 @@ const redisTimeFrames = {
     "1m": "1",
     "1s": "1"
 };
-
-
 
 const tokenMap = {
     'BINANCE': { token: "qs_NMWrtw0wr0l4", sdsSystem: "sds_sym_1", timeframe: 1 },
@@ -69,8 +66,6 @@ const tokenMap = {
     'MCX': { token: "cs_HPvg93fZ6wIB", sdsSystem: "sds_sym_1", timeframe: 1 },
     'FX': { token: "cs_Aoj8CvPqSsks", sdsSystem: "sds_sym_1", timeframe: 1 },
 }
-
-
 
 const symbols = {
     // "INTOTHEBLOCK:BTC_RETAIL": { resolver: 152, shouldActive: true, active: false },
@@ -206,10 +201,10 @@ const remover = (inputString) => {
 
 
     separatedDatas.forEach(separatedData => {
-        if (!separatedData.includes("~~h")) {
-            if (separatedData.includes('"m":"du"')) {
+        if (!separatedData.includes("~~h") && !separatedData.includes('"m":"series_loading"') && !separatedData.includes('"m":"series_completed"') && !separatedData.includes('"m":"timescale_update"')) {
+            // console.log(separatedData)
+            if (separatedData.includes('"m":"du"') && !separatedData.includes('"i":-')) {
                 combinedArray.push(JSON.parse(separatedData));
-
             }
         }
     });
@@ -268,12 +263,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
         async function saveCandleDataToPostgreSQL(symbol, timeFrame, newCandle) {
             const fetchedSymbolId = await getSymbolIdByName(symbol.toUpperCase());
             const timestampMilliseconds = newCandle.t * 1000; // Unix timestamp in milliseconds
-            // const formattedDateTime = moment(timestampMilliseconds).format('YYYY-MM-DD HH:mm:ss');
-            // const modifiedDateTime = moment(formattedDateTime, 'YYYY-MM-DD HH:mm:ss').subtract(3, 'hours').subtract(30, 'minutes');
             const modifiedFormattedDateTime = moment(timestampMilliseconds).utc().format('YYYY-MM-DD HH:mm:ss');
-            // Get the modified date and time in the same format
-            // const modifiedFormattedDateTime = modifiedDateTime.format('YYYY-MM-DD HH:mm:ss');
-
 
             try {
                 await db.none(
@@ -309,7 +299,6 @@ function startStream(exchange, symbolName, resolver, allCandles) {
         }
 
         const myResult = remover(refactored)
-
 
         // this function will make other candles
         const makeOtherCandles = async (allCandles, smallestTimeFrame, myStartTime, lastVolume, symbol) => {
@@ -565,7 +554,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                                         v: allCandles[timeframe][1].v,
                                     };
 
-                                    saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
+                                    // saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
                                 }
                             }
 
@@ -635,7 +624,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
                                 v: allCandles['1m'][1].v,
                             };
 
-                            saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
+                            // saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
                         }
                     }
                 }
@@ -647,7 +636,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
 
 
-                // console.log(allCandles)
+                console.log(allCandles)
 
 
 
