@@ -636,7 +636,7 @@ function startStream(exchange, symbolName, resolver, allCandles) {
 
 
 
-                console.log(allCandles)
+                // console.log(allCandles)
 
 
 
