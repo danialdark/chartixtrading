@@ -6,7 +6,7 @@ const Redis = require('ioredis');
 const redis = new Redis({
     host: 'localhost',
     port: '6379',
-    password: 'D@n!@l12098',
+    password: '',
     enableCompression: true,
 });
 var pipeline = redis.pipeline();
@@ -201,9 +201,9 @@ const remover = (inputString) => {
 
 
     separatedDatas.forEach(separatedData => {
-        if (!separatedData.includes("~~h") && !separatedData.includes('"m":"series_loading"') && !separatedData.includes('"m":"series_completed"') && !separatedData.includes('"m":"timescale_update"')) {
+        if (!separatedData.includes("~~h")) {
             // console.log(separatedData)
-            if (separatedData.includes('"m":"du"') && !separatedData.includes('"i":-')) {
+            if (separatedData.includes('"m":"du"') && !separatedData.includes('pointset')) {
                 combinedArray.push(JSON.parse(separatedData));
             }
         }
@@ -256,8 +256,11 @@ function startStream(exchange, symbolName, resolver, allCandles) {
         }
 
         setInterval(() => {
-            ws.send(`~m~59~m~{"m":"request_more_data","p":["${tokenMap[exchange].token}","sds_1",7]}`)
-        }, 5000);
+            // ws.send(`~m~104~m~{"m":"create_pointset","p":["${tokenMap[exchange].token}","pointset_1","turnaround","sds_sym_1","1",[1698797700,0]]}`)
+            ws.send('~m~36~m~{"m":"set_data_quality","p":["low"]}');
+        }, 3000);
+
+
 
 
         async function saveCandleDataToPostgreSQL(symbol, timeFrame, newCandle) {
