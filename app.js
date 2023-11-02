@@ -6,7 +6,7 @@ const Redis = require('ioredis');
 const redis = new Redis({
     host: 'localhost',
     port: '6379',
-    password: '',
+    password: 'D@n!@l12098',
     enableCompression: true,
 });
 var pipeline = redis.pipeline();
@@ -14,7 +14,7 @@ var pipeline = redis.pipeline();
 
 // const serverUrl = 'wss://data.tradingview.com/socket.io/websocket?from=chart';
 // const serverUrl = 'wss://data-iln2.tradingview.com/socket.io/websocket?from=chart';
-const serverurltoken = ['wss://data.tradingview.com/socket.io/websocket?from=chart', 'wss://data-iln1.tradingview.com/socket.io/websocket?from=chart']
+const serverurltoken = ['wss://data.tradingview.com/socket.io/websocket?from=chart', 'wss://data.tradingview.com/socket.io/websocket?from=chart%2FTd7zSqMt%2F&date=2023_11_01-10_52&type=chart']
 
 const headers = {
     Origin: 'https://www.tradingview.com',
@@ -557,7 +557,7 @@ function startStream(exchange, symbolName, resolver, allCandles, number) {
                                         o: allCandles[timeframe][1].o,
                                         v: allCandles[timeframe][1].v,
                                     };
-                                    
+
                                     saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
                                 }
                             }
