@@ -684,7 +684,7 @@ async function startStreams(symbols) {
                         startStream(pairArray[0], pairArray[1], symbols[symbol].resolver, allCandles);
                         symbols[symbol].active = true;
                         resolve();
-                    }, 15000); // 2000 milliseconds = 2 seconds
+                    }, 4000); // 2000 milliseconds = 2 seconds
                 });
             }
         }
