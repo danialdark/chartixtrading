@@ -91,6 +91,9 @@ const symbols = {
     // "FRED:BAMLH0A0HYM2": { resolver: 146, shouldActive: true, active: false },
     // "ECONOMICS:USNFP": { resolver: 144, shouldActive: true, active: false },
     // "NYMEX:MBE1!": { resolver: 140, shouldActive: true, active: false },
+
+
+
     // "XETR:DAX": { resolver: 137, shouldActive: true, active: false },
     // "CRYPTOCAP:BTC.D": { resolver: 144, shouldActive: true, active: false, times: 0 },
     // "CRYPTOCAP:ETH.D": { resolver: 144, shouldActive: true, active: false, times: 0 },
@@ -142,12 +145,12 @@ const symbols = {
     // "OANDA:USDCHF": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:USDCAD": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:USDJPY": { resolver: 141, shouldActive: true, active: false },
-    // "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: false },
-    // "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: false },
-    // "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: false },
-    // "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: false },
-    // "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: false },
-    // "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: false },
+    "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: false },
+    "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: false },
+    "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: false },
+    "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: false },
+    "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: false },
+    "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: false },
     "OANDA:EURCHF": { resolver: 141, shouldActive: true, active: false },
     "OANDA:GBPJPY": { resolver: 141, shouldActive: true, active: false },
     "OANDA:GBPNZD": { resolver: 141, shouldActive: true, active: false },
