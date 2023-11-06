@@ -140,7 +140,7 @@ const symbols = {
     "CAPITALCOM:NATURALGAS": { resolver: 150, shouldActive: true, active: false },
     "COMEX:HRC1!": { resolver: 140, shouldActive: true, active: false },
     "MCX:ZINC1!": { resolver: 139, shouldActive: true, active: false },
-    "FX:XAUUSD": { resolver: 138, shouldActive: true, active: false },
+    // "FX:XAUUSD": { resolver: 138, shouldActive: true, active: false },
     "OANDA:EURUSD": { resolver: 141, shouldActive: true, active: false },
     "OANDA:GBPUSD": { resolver: 141, shouldActive: true, active: false },
     "OANDA:USDCHF": { resolver: 141, shouldActive: true, active: false },
