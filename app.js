@@ -4,7 +4,7 @@ const db = require('./db'); // Adjust the path as needed
 const Redis = require('ioredis');
 
 const redis = new Redis({
-    host: 'localhost',
+    host: '95.217.151.68',
     port: '6379',
     password: 'D@n!@l12098',
     enableCompression: true,
@@ -142,12 +142,12 @@ const symbols = {
     // "OANDA:USDCHF": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:USDCAD": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:USDJPY": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: false },
     "OANDA:EURCHF": { resolver: 141, shouldActive: true, active: false },
     "OANDA:GBPJPY": { resolver: 141, shouldActive: true, active: false },
     "OANDA:GBPNZD": { resolver: 141, shouldActive: true, active: false },
@@ -296,7 +296,7 @@ function startStream(exchange, symbolName, resolver, allCandles, number) {
                     ]
                 );
 
-                console.log(`data saved to ${timeFrame}`)
+                console.log(`data saved to ${timeFrame} for ${symbol}`)
             } catch (error) {
                 console.error('Error saving candle data to PostgreSQL:', error);
             }
@@ -558,7 +558,7 @@ function startStream(exchange, symbolName, resolver, allCandles, number) {
                                         v: allCandles[timeframe][1].v,
                                     };
 
-                                    saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
+                                    await saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
                                 }
                             }
 
@@ -572,8 +572,6 @@ function startStream(exchange, symbolName, resolver, allCandles, number) {
                 redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles), 'EX', 720).exec();
 
             }
-            // console.log("minute is " + minuteOfDay)
-
 
         }
 
@@ -636,7 +634,6 @@ function startStream(exchange, symbolName, resolver, allCandles, number) {
                 makeOtherCandles(allCandles, "1m", "", lastVolume, symbolName)
 
                 redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles), 'EX', 720).exec();
-
 
 
 
