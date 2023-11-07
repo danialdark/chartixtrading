@@ -4,13 +4,24 @@ const db = require('./db'); // Adjust the path as needed
 const Redis = require('ioredis');
 
 const redis = new Redis({
-    host: '95.217.151.68',
+    host: 'localhost',
     port: '6379',
-    password: 'D@n!@l12098',
+    password: '',
     enableCompression: true,
 });
 var pipeline = redis.pipeline();
 
+const redisTimeFrames = {
+    "1m": "1",
+    "5m": "5",
+    "15m": "15",
+    "30m": "30",
+    "1h": "60",
+    "4h": "240",
+    "1d": "1D",
+    "1w": "1w",
+    "1m": "1M",
+}
 
 // const serverUrl = 'wss://data.tradingview.com/socket.io/websocket?from=chart';
 // const serverUrl = 'wss://data-iln2.tradingview.com/socket.io/websocket?from=chart';
@@ -33,18 +44,6 @@ const tableMap = {
     "1s": "one_second_forex_candles",
 };
 
-const redisTimeFrames = {
-    "1M": "1M",
-    "1w": "1W",
-    "1d": "1D",
-    "4h": "240",
-    "1h": "60",
-    "30m": "30",
-    "15m": "15",
-    "5m": "5",
-    "1m": "1",
-    "1s": "1"
-};
 
 const tokenMap = {
     'BINANCE': { token: "qs_NMWrtw0wr0l4", sdsSystem: "sds_sym_1", timeframe: 1 },
@@ -119,33 +118,33 @@ const symbols = {
     // "OANDA:SPX500USD": { resolver: 144, shouldActive: true, active: false },
     // "TVC:NDQ": { resolver: 136, shouldActive: true, active: false },
 
-    "TVC:US20Y": { resolver: 138, shouldActive: true, active: false },
-    "AMEX:GDX": { resolver: 137, shouldActive: true, active: false },
-    "AMEX:GDXJ": { resolver: 138, shouldActive: true, active: false },
-    "AMEX:GLD": { resolver: 137, shouldActive: true, active: false },
-    "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: false },
-    "CAPITALCOM:US30": { resolver: 144, shouldActive: true, active: false },
-    "NASDAQ:NDX": { resolver: 139, shouldActive: true, active: false },
-    "CAPITALCOM:US500": { resolver: 145, shouldActive: true, active: false },
-    "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: false },
-    "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: false },
-    "TVC:BXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:EXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:SXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:JXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:CXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:AXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:ZXY": { resolver: 136, shouldActive: true, active: false },
-    "CAPITALCOM:HK50": { resolver: 144, shouldActive: true, active: false },
-    "CAPITALCOM:NATURALGAS": { resolver: 150, shouldActive: true, active: false },
-    "COMEX:HRC1!": { resolver: 140, shouldActive: true, active: false },
-    "MCX:ZINC1!": { resolver: 139, shouldActive: true, active: false },
+    // "TVC:US20Y": { resolver: 138, shouldActive: true, active: false },
+    // "AMEX:GDX": { resolver: 137, shouldActive: true, active: false },
+    // "AMEX:GDXJ": { resolver: 138, shouldActive: true, active: false },
+    // "AMEX:GLD": { resolver: 137, shouldActive: true, active: false },
+    // "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: false },
+    // "CAPITALCOM:US30": { resolver: 144, shouldActive: true, active: false },
+    // "NASDAQ:NDX": { resolver: 139, shouldActive: true, active: false },
+    // "CAPITALCOM:US500": { resolver: 145, shouldActive: true, active: false },
+    // "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: false },
+    // "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: false },
+    // "TVC:BXY": { resolver: 136, shouldActive: true, active: false },
+    // "TVC:EXY": { resolver: 136, shouldActive: true, active: false },
+    // "TVC:SXY": { resolver: 136, shouldActive: true, active: false },
+    // "TVC:JXY": { resolver: 136, shouldActive: true, active: false },
+    // "TVC:CXY": { resolver: 136, shouldActive: true, active: false },
+    // "TVC:AXY": { resolver: 136, shouldActive: true, active: false },
+    // "TVC:ZXY": { resolver: 136, shouldActive: true, active: false },
+    // "CAPITALCOM:HK50": { resolver: 144, shouldActive: true, active: false },
+    // "CAPITALCOM:NATURALGAS": { resolver: 150, shouldActive: true, active: false },
+    // "COMEX:HRC1!": { resolver: 140, shouldActive: true, active: false },
+    // "MCX:ZINC1!": { resolver: 139, shouldActive: true, active: false },
     // "FX:XAUUSD": { resolver: 138, shouldActive: true, active: false },
-    "OANDA:EURUSD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:GBPUSD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:USDCHF": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:USDCAD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:USDJPY": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:EURUSD": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:GBPUSD": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:USDCHF": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:USDCAD": { resolver: 141, shouldActive: true, active: false },
+    // "OANDA:USDJPY": { resolver: 141, shouldActive: true, active: false },
 
     // "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: false },
@@ -165,7 +164,6 @@ const symbols = {
     // "OANDA:AUDCHF": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:CHFJPY": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:XAGUSD": { resolver: 141, shouldActive: true, active: false },
-    // "OANDA:XAUUSD": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:NZDCAD": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:NZDCHF": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:NZDJPY": { resolver: 141, shouldActive: true, active: false },
@@ -173,6 +171,9 @@ const symbols = {
     // "OANDA:CADCHF": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:CADJPY": { resolver: 141, shouldActive: true, active: false },
     // "OANDA:USDTRY": { resolver: 141, shouldActive: true, active: false },
+    "OANDA:XAUUSD": {
+        resolver: 141, shouldActive: true, active: false
+    },
 }
 
 function formatNumberWithTwoDecimals(number) {
@@ -195,6 +196,79 @@ async function getSymbolIdByName(symbolName) {
     }
 }
 
+async function makeMyOpenTime(timeFrame, timeFrameOpenTimes, hour, minute) {
+
+    var lessThanTarget = null;
+    var myHour = hour
+    var myMinute = minute
+
+    if (["5m", "15m", "30m"].includes(timeFrame)) {
+        lessThanTarget = timeFrameOpenTimes.filter((timeFrameOpenTime) => timeFrameOpenTime < minute);
+        myMinute = Math.max(...lessThanTarget);
+    } else {
+        lessThanTarget = timeFrameOpenTimes.filter((timeFrameOpenTime) => timeFrameOpenTime < hour);
+        myHour = Math.max(...lessThanTarget);    // 24-hour format
+    }
+
+    if (lessThanTarget.length > 0) {
+        // Define the date, hour, and minute components
+        var year = new Date().getUTCFullYear();   // Change to your desired year
+        var month = new Date().getUTCMonth();     // 0-based index (0 = January, 1 = February, etc.)
+        var day = new Date().getUTCDate();       // 1-based day of the month
+
+        // Create a new Date object with the specified components
+        var date = new Date(Date.UTC(year, month, day, myHour, myMinute));
+
+        // Calculate the Unix timestamp (in seconds) from the Date object
+        var timestampInSeconds = Math.floor(date.getTime() / 1000);
+        return timestampInSeconds;
+
+    } else {
+
+        return 0;
+    }
+}
+
+
+async function moveRedisToRam(symbolName) {
+    try {
+        const result = await redis.get(symbolName.toLowerCase());
+        const parsedResult = JSON.parse(result);
+
+        if (parsedResult !== null) {
+            return parsedResult;
+        } else {
+            const shouldSendResult = { "1m": [], "5m": [], "15m": [], "30m": [], "1h": [], "4h": [], "1d": [], "1w": [], "1M": [] };
+
+            await Promise.all(Object.keys(redisTimeFrames).map(async (redisTimeFrame) => {
+
+                const rediResult = await redis.get(`${redisTimeFrames[redisTimeFrame]}-${symbolName.toLowerCase()}`);
+
+                const parsedRediResult = JSON.parse(rediResult);
+
+                if (parsedRediResult !== null) {
+                    shouldSendResult[redisTimeFrame][0] = {
+                        t: parsedRediResult[0].open_time,
+                        T: parsedRediResult[0].close_time,
+                        o: formatNumberWithTwoDecimals(parsedRediResult[0].open_price),
+                        h: formatNumberWithTwoDecimals(parsedRediResult[0].high_price),
+                        l: formatNumberWithTwoDecimals(parsedRediResult[0].low_price),
+                        c: formatNumberWithTwoDecimals(parsedRediResult[0].close_price),
+                        v: parsedRediResult[0].volumn,
+                    };
+                }
+
+            }));
+
+            return shouldSendResult;
+        }
+    } catch (error) {
+        console.error('Error fetching data from Redis:', error);
+        // Handle the error or return an error indicator
+        return null;
+    }
+}
+
 
 const remover = (inputString) => {
     const dataArray = inputString.split(/~m~\d+~m~{/);
@@ -208,7 +282,6 @@ const remover = (inputString) => {
 
     separatedDatas.forEach(separatedData => {
         if (!separatedData.includes("~~h")) {
-            // console.log(separatedData)
             if (separatedData.includes('"m":"du"') && !separatedData.includes('pointset')) {
                 combinedArray.push(JSON.parse(separatedData));
             }
@@ -225,11 +298,589 @@ const remover = (inputString) => {
     }
 }
 
+async function saveCandleDataToPostgreSQL(symbol, timeFrame, newCandle) {
+    const fetchedSymbolId = await getSymbolIdByName(symbol.toUpperCase());
+    const timestampMilliseconds = newCandle.t * 1000; // Unix timestamp in milliseconds
+    const modifiedFormattedDateTime = moment(timestampMilliseconds).utc().format('YYYY-MM-DD HH:mm:ss');
 
-function startStream(exchange, symbolName, resolver, allCandles, number) {
+    try {
+        await db.none(
+            `INSERT INTO ${tableMap[timeFrame]} (symbol_id, symbol_name, open_time, open_price, high_price, low_price, close_price, volumn, close_time, created_at) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+            ON CONFLICT (symbol_name, created_at) DO UPDATE
+            SET 
+                open_price = excluded.open_price,
+                high_price = excluded.high_price,
+                low_price = excluded.low_price,
+                close_price = excluded.close_price,
+                volumn = excluded.volumn,
+                close_time = excluded.close_time,
+                created_at = excluded.created_at`,
+            [
+                fetchedSymbolId,
+                symbol.toUpperCase(),
+                newCandle.t,
+                newCandle.o,
+                newCandle.h,
+                newCandle.l,
+                newCandle.c,
+                newCandle.v != null ? newCandle.v : 0,
+                newCandle.T,
+                modifiedFormattedDateTime,
+            ]
+        );
+
+        console.log(`data saved to ${timeFrame} for ${symbol}`)
+    } catch (error) {
+        console.error('Error saving candle data to PostgreSQL:', error);
+    }
+}
+
+// this function will make other candles
+const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullName, symbolName) => {
+    // now we will make other candles from 1 minute last candle
+    const shouldMakeAllTimeFrames = ['1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w', '1M'];
+
+    const indexToKeep = shouldMakeAllTimeFrames.indexOf(smallestTimeFrame);
+    var resultArray = null
+    if (indexToKeep !== -1) {
+        resultArray = shouldMakeAllTimeFrames.slice(indexToKeep);
+    } else {
+        console.log(`The element ${smallestTimeFrame} was not found in the array.`);
+    }
+
+
+    const lastOneMinuteCandle = allCandles[smallestTimeFrame][0];
+    const candleStamp = allCandles[smallestTimeFrame][0].t;
+    const now = new Date(candleStamp * 1000);
+    const hourOfDay = now.getUTCHours();
+    const minuteOfDay = now.getUTCMinutes();
+    var symbolConfigs = {
+        // "INTOTHEBLOCK:BTC_RETAIL": {  },
+        // "INTOTHEBLOCK:BTC_HASHRATE": {  },
+        // "INTOTHEBLOCK:BTC_TRADERS": {  },
+        // "INTOTHEBLOCK:BTC_BEARSVOLUME": {  },
+        // "INTOTHEBLOCK:BTC_BULLSVOLUME": {  },
+        // "INTOTHEBLOCK:BTC_TXVOLUME": {  },
+        // "INTOTHEBLOCK:BTC_TXVOLUMEUSD": {  },
+        // "INTOTHEBLOCK:ETH_RETAIL": {  },
+        // "INTOTHEBLOCK:ETH_TRADERS": {  },
+        // "INTOTHEBLOCK:ETH_BEARSVOLUME": {  },
+        // "INTOTHEBLOCK:ETH_BULLSVOLUME": {  },
+        // "INTOTHEBLOCK:ETH_TXVOLUME": {  },
+        // "INTOTHEBLOCK:ETH_TXVOLUMEUSD": {  },
+        // "ECONOMICS:USINTR": {  },
+        // "ECONOMICS:USIRYY": {  },
+        // "FRED:UNRATE": { },
+        // "FRED:GDP": { },
+        // "FRED:T5YIE": { },
+        // "FRED:T10YIE": { },//1 means every month
+        // "FRED:BAMLH0A0HYM2": {  },
+        // "ECONOMICS:USNFP": {  },
+        // "NYMEX:MBE1!": {  },
+
+
+
+        // "XETR:DAX": {  },
+        // "CRYPTOCAP:BTC.D": {  },
+        // "CRYPTOCAP:ETH.D": {  },
+        // "CRYPTOCAP:USDT.D": {  },
+        // "CRYPTOCAP:OTHERS.D": {  },
+        // "CRYPTOCAP:Total": {  },
+        // "CRYPTOCAP:Total2": {  },
+        // "CRYPTOCAP:Total3": {  },
+        // "CRYPTOCAP:TOTALDEFI": {  },//0 is every day
+        // "NASDAQ:FSTOK300": {  },
+        // "NASDAQ:FSTOK10": {  },
+        // "NASDAQ:FSTOK40": {  },
+        // "NASDAQ:FSTOK250": {  },
+        // "NASDAQ:FSTOKAGG": {  },
+        // "TVC:US05Y": {  },
+        // "TVC:US10Y": {  },
+        // "CME_MINI:NQ1!": {  },
+        // "CME_MINI:ES1!": {  },
+        // "CBOT_MINI:YM1!": {  },
+        // "VANTAGE:DJ30FT": {  },
+        // "CAPITALCOM:DXY": {  },
+        // "FOREXCOM:DJI": {  },
+        // "OANDA:SPX500USD": {  },
+        // "TVC:NDQ": {  },
+
+        // "TVC:US20Y": {  },
+        // "AMEX:GDX": {  },
+        // "AMEX:GDXJ": {  },
+        // "AMEX:GLD": {  },
+        // "FOREXCOM:DJI": {  },
+        // "CAPITALCOM:US30": {  },
+        // "NASDAQ:NDX": {  },
+        // "CAPITALCOM:US500": {  },
+        // "CAPITALCOM:EU50": {  },
+        // "CAPITALCOM:CN50": {  },
+        // "TVC:BXY": {  },
+        // "TVC:EXY": {  },
+        // "TVC:SXY": {  },
+        // "TVC:JXY": {  },
+        // "TVC:CXY": {  },
+        // "TVC:AXY": {  },
+        // "TVC:ZXY": {  },
+        // "CAPITALCOM:HK50": {  },
+        // "CAPITALCOM:NATURALGAS": {  },
+        // "COMEX:HRC1!": {  },
+        // "MCX:ZINC1!": {  },
+        // "FX:XAUUSD": {  },
+        // "OANDA:EURUSD": {  },
+        // "OANDA:GBPUSD": {  },
+        // "OANDA:USDCHF": {  },
+        // "OANDA:USDCAD": {  },
+        // "OANDA:USDJPY": {  },
+
+        // "OANDA:AUDUSD": {  },
+        // "OANDA:NZDUSD": {  },
+        // "OANDA:EURJPY": {  },
+        // "OANDA:EURCAD": {  },
+        // "OANDA:EURNZD": {  },
+        // "OANDA:EURAUD": {  },
+        // "OANDA:EURCHF": {  },
+        // "OANDA:GBPJPY": {  },
+        // "OANDA:GBPNZD": {  },
+        // "OANDA:GBPAUD": {  },
+        // "OANDA:GBPCAD": {  },
+        // "OANDA:GBPCHF": {  },
+        // "OANDA:AUDCAD": {  },
+        // "OANDA:AUDNZD": {  },
+        // "OANDA:AUDJPY": {  },
+        // "OANDA:AUDCHF": {  },
+        // "OANDA:CHFJPY": {  },
+        // "OANDA:XAGUSD": {  },
+        // "OANDA:NZDCAD": {  },
+        // "OANDA:NZDCHF": {  },
+        // "OANDA:NZDJPY": {  },
+        // "OANDA:EURGBP": {  },
+        // "OANDA:CADCHF": {  },
+        // "OANDA:CADJPY": {  },
+        // "OANDA:USDTRY": {  },
+        "OANDA:XAUUSD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": false,
+                "1M": false,
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+    }
+    if (lastOneMinuteCandle != undefined) {
+        for (const timeframe of resultArray) {
+
+            var shouldMakeCandle = false;
+            var addedTime = 0;
+            var startTime = 0;
+            var newV = false
+            switch (timeframe) {
+                case '5m':
+                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
+
+                        addedTime = 300;
+                        shouldMakeCandle = true;
+
+                        if (symbolConfigs[fullName].config[timeframe]) {
+                            startTime = lastOneMinuteCandle.t;
+                            timestamp = startTime; // Unix timestamp in seconds
+                            newV = true;
+
+                        } else {
+                            startTime = allCandles[timeframe][0].t
+                        }
+                    } else {
+                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
+                        startTime = madeOpenTime
+                        allCandles[timeframe][0] = {
+                            t: madeOpenTime,
+                            T: madeOpenTime + 300,
+                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
+                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
+                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
+                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
+                            v: lastOneMinuteCandle.v,
+                        }
+
+
+                    }
+                    break;
+
+                case '15m':
+                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
+                        addedTime = 900;
+                        shouldMakeCandle = true;
+                        if (symbolConfigs[fullName].config[timeframe]) {
+                            startTime = lastOneMinuteCandle.t;
+                            timestamp = startTime; // Unix timestamp in seconds
+                            newV = true;
+
+                        } else {
+                            startTime = allCandles[timeframe][0].t
+                        }
+                    } else {
+                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
+                        startTime = madeOpenTime
+
+                        allCandles[timeframe][0] = {
+                            t: madeOpenTime,
+                            T: madeOpenTime + 900,
+                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
+                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
+                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
+                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
+                            v: lastOneMinuteCandle.v,
+                        }
+                    }
+
+                    break;
+
+                case '30m':
+                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
+                        addedTime = 1800;
+                        shouldMakeCandle = true;
+                        if (symbolConfigs[fullName].config[timeframe]) {
+                            startTime = lastOneMinuteCandle.t;
+                            timestamp = startTime; // Unix timestamp in seconds
+                            newV = true;
+
+                        } else {
+                            startTime = allCandles[timeframe][0].t
+                        }
+                    } else {
+                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
+                        startTime = madeOpenTime
+
+
+                        allCandles[timeframe][0] = {
+                            t: madeOpenTime,
+                            T: madeOpenTime + 1800,
+                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
+                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
+                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
+                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
+                            v: lastOneMinuteCandle.v,
+                        }
+                    }
+
+                    break;
+
+                case '1h':
+                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
+                        addedTime = 3600;
+                        shouldMakeCandle = true;
+                        if (symbolConfigs[fullName].config[timeframe]) {
+                            startTime = lastOneMinuteCandle.t;
+                            timestamp = startTime; // Unix timestamp in seconds
+                            newV = true;
+
+                        } else {
+                            startTime = allCandles[timeframe][0].t
+                        }
+                    } else {
+                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
+                        startTime = madeOpenTime
+
+                        allCandles[timeframe][0] = {
+                            t: madeOpenTime,
+                            T: madeOpenTime + 3600,
+                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
+                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
+                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
+                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
+                            v: lastOneMinuteCandle.v,
+                        }
+                    }
+
+                    break;
+
+                case '4h':
+                    if (allCandles[timeframe][0] != undefined || (symbolConfigs[fullName].config[timeframe])) {
+                        addedTime = 14400;
+                        shouldMakeCandle = true;
+                        if (symbolConfigs[fullName].config[timeframe]) {
+                            startTime = lastOneMinuteCandle.t;
+                            timestamp = startTime; // Unix timestamp in seconds
+                            newV = true;
+
+                        } else {
+                            startTime = allCandles[timeframe][0].t
+                        }
+                    } else {
+                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
+                        startTime = madeOpenTime
+
+                        allCandles[timeframe][0] = {
+                            t: madeOpenTime,
+                            T: madeOpenTime + 14400,
+                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
+                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
+                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
+                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
+                            v: lastOneMinuteCandle.v,
+                        }
+                    }
+
+                    break;
+
+                case '1d':
+                    if (allCandles[timeframe][0] != undefined || (symbolConfigs[fullName].config[timeframe])) {
+                        addedTime = 86400;
+                        shouldMakeCandle = true;
+                        if (symbolConfigs[fullName].config[timeframe]) {
+
+                            startTime = lastOneMinuteCandle.t;
+                            timestamp = startTime; // Unix timestamp in seconds
+                            newV = true;
+
+
+                        } else {
+                            startTime = allCandles[timeframe][0].t
+                        }
+                    } else {
+                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
+                        startTime = madeOpenTime
+
+                        allCandles[timeframe][0] = {
+                            t: madeOpenTime,
+                            T: madeOpenTime + 86400,
+                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
+                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
+                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
+                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
+                            v: lastOneMinuteCandle.v,
+                        }
+                    }
+
+                    break;
+
+                case '1w':
+                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
+                        addedTime = 604800;
+                        shouldMakeCandle = true;
+                        if (symbolConfigs[fullName].config[timeframe]) {
+                            startTime = lastOneMinuteCandle.t;
+                            timestamp = startTime; // Unix timestamp in seconds
+                            newV = true;
+
+
+
+
+                        } else {
+                            startTime = allCandles[timeframe][0].t
+                        }
+                    }
+
+                    break;
+
+                case '1M':
+                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
+                        addedTime = 2592000;
+                        shouldMakeCandle = true;
+                        if (symbolConfigs[fullName].config[timeframe]) {
+                            startTime = lastOneMinuteCandle.t;
+                            timestamp = startTime; // Unix timestamp in seconds
+                            newV = true;
+
+
+                        } else {
+                            startTime = allCandles[timeframe][0].t
+                        }
+                    }
+
+                    break;
+
+                default:
+                    shouldMakeCandle = false;
+                    addedTime = 0;
+                    break;
+            }
+
+
+            var shouldBe = 0;
+            var openPrice, high, low, closeTime;
+            if (shouldMakeCandle) {
+
+                // this is for v
+                if (!newV && allCandles[timeframe][0] != undefined) {
+
+                    if (lastOneMinuteCandle.v - lastVolume > 0) {
+                        shouldBe = allCandles[timeframe][0].v + (lastOneMinuteCandle.v - lastVolume)
+                    } else {
+                        if (lastVolume != lastOneMinuteCandle.v) {
+                            shouldBe = allCandles[timeframe][0].v + lastOneMinuteCandle.v
+                        } else {
+                            shouldBe = allCandles[timeframe][0].v
+                        }
+                    }
+
+                    openPrice = allCandles[timeframe][0].o;
+                    closeTime = allCandles[timeframe][0].t + addedTime
+
+
+                    if (allCandles[timeframe][0].h < lastOneMinuteCandle.h) {
+                        high = lastOneMinuteCandle.h
+                    } else {
+                        high = allCandles[timeframe][0].h
+                    }
+
+                    if (allCandles[timeframe][0].l > lastOneMinuteCandle.l) {
+                        low = lastOneMinuteCandle.l
+                    } else {
+                        low = allCandles[timeframe][0].l
+                    }
+                } else {
+                    // console.log("####################################")
+                    shouldBe = lastOneMinuteCandle.v;
+                    openPrice = lastOneMinuteCandle.o;
+                    high = lastOneMinuteCandle.h
+                    low = lastOneMinuteCandle.l
+                    closeTime = lastOneMinuteCandle.t + addedTime
+                }
+
+
+
+
+                const newCandle = {
+                    t: startTime,
+                    T: closeTime,
+                    o: formatNumberWithTwoDecimals(openPrice),
+                    h: formatNumberWithTwoDecimals(high),
+                    l: formatNumberWithTwoDecimals(low),
+                    c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
+                    v: shouldBe,
+                };
+
+
+                // now we will add to each time Frame
+                const existingCandleIndex = allCandles[timeframe].findIndex((candle) => candle.t == newCandle.t);
+
+                if (existingCandleIndex >= 0) {
+                    // Update existing candle
+                    allCandles[timeframe][existingCandleIndex] = newCandle;
+                } else {
+
+                    // Add new candle at the beginning
+                    allCandles[timeframe].unshift(newCandle);
+
+                    if (allCandles[timeframe].length >= 3) {
+                        // Remove excess candles
+                        allCandles[timeframe].pop();
+
+                        if (allCandles[timeframe][1] != undefined) {
+                            const shouldSaveCandle = {
+                                t: allCandles[timeframe][1].t,
+                                T: allCandles[timeframe][1].T,
+                                c: allCandles[timeframe][1].c,
+                                h: allCandles[timeframe][1].h,
+                                l: allCandles[timeframe][1].l,
+                                o: allCandles[timeframe][1].o,
+                                v: allCandles[timeframe][1].v,
+                            };
+
+                            // await saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
+                        }
+                    }
+
+
+                }
+            }
+
+
+
+        }
+        redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
+
+    }
+
+}
+
+
+const shower = async (results, allCandles, exchange, symbolName) => {
+    results.forEach(result => {
+
+        const jsonData = result; // Parse the JSON string
+        const candleData = jsonData.p[1].sds_1.s[0].v;
+        var lastVolume = 0;
+        const newCandle = {
+            t: candleData[0],
+            T: jsonData.p[1].sds_1.lbs.bar_close_time,
+            o: formatNumberWithTwoDecimals(candleData[1]),
+            h: formatNumberWithTwoDecimals(candleData[2]),
+            l: formatNumberWithTwoDecimals(candleData[3]),
+            c: formatNumberWithTwoDecimals(candleData[4]),
+            v: candleData[5],
+        };
+
+
+        if (allCandles['1m'][0] != undefined) {
+            lastVolume = allCandles['1m'][0].v;
+        }
+
+
+
+        const existingCandleIndex = allCandles['1m'].findIndex((candle) => candle.t == newCandle.t);
+
+
+        if (existingCandleIndex >= 0) {
+            // Update existing candle
+            allCandles['1m'][existingCandleIndex] = newCandle;
+        } else {
+            // Add new candle at the beginning
+            allCandles['1m'].unshift(newCandle);
+
+            if (allCandles['1m'].length >= 3) {
+                // Remove excess candles
+                allCandles['1m'].pop();
+
+                if (allCandles['1m'][1] != undefined) {
+                    const shouldSaveCandle = {
+                        t: allCandles['1m'][1].t,
+                        T: allCandles['1m'][1].T,
+                        c: allCandles['1m'][1].c,
+                        h: allCandles['1m'][1].h,
+                        l: allCandles['1m'][1].l,
+                        o: allCandles['1m'][1].o,
+                        v: allCandles['1m'][1].v,
+                    };
+
+                    // saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
+                }
+            }
+        }
+
+        makeOtherCandles(allCandles, "1m", lastVolume, exchange + ":" + symbolName, symbolName)
+
+        redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
+    });
+
+
+}
+
+
+async function startStream(exchange, symbolName, resolver, allCandles, number) {
     const ws = new WebSocket(serverurltoken[number], {
         headers: headers
     });
+
+    // first we will change allCandles if redis exist
+    var redisData = await moveRedisToRam(symbolName.toLowerCase())
+    if (redisData != null) {
+        allCandles = redisData
+    }
 
 
     ws.on('open', () => {
@@ -258,409 +909,19 @@ function startStream(exchange, symbolName, resolver, allCandles, number) {
 
         if (!isNaN(refactored[refactored.length - 1])) {
             ws.send(refactored);
-            // console.log(refactored + " sent")
         }
 
         setInterval(() => {
-            // ws.send(`~m~104~m~{"m":"create_pointset","p":["${tokenMap[exchange].token}","pointset_1","turnaround","sds_sym_1","1",[1698797700,0]]}`)
             ws.send('~m~36~m~{"m":"set_data_quality","p":["low"]}');
         }, 3000);
 
-
-
-
-        async function saveCandleDataToPostgreSQL(symbol, timeFrame, newCandle) {
-            const fetchedSymbolId = await getSymbolIdByName(symbol.toUpperCase());
-            const timestampMilliseconds = newCandle.t * 1000; // Unix timestamp in milliseconds
-            const modifiedFormattedDateTime = moment(timestampMilliseconds).utc().format('YYYY-MM-DD HH:mm:ss');
-
-            try {
-                await db.none(
-                    `INSERT INTO ${tableMap[timeFrame]} (symbol_id, symbol_name, open_time, open_price, high_price, low_price, close_price, volumn, close_time, created_at) 
-                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-                    ON CONFLICT (symbol_name, created_at) DO UPDATE
-                    SET 
-                        open_price = excluded.open_price,
-                        high_price = excluded.high_price,
-                        low_price = excluded.low_price,
-                        close_price = excluded.close_price,
-                        volumn = excluded.volumn,
-                        close_time = excluded.close_time,
-                        created_at = excluded.created_at`,
-                    [
-                        fetchedSymbolId,
-                        symbol.toUpperCase(),
-                        newCandle.t,
-                        newCandle.o,
-                        newCandle.h,
-                        newCandle.l,
-                        newCandle.c,
-                        newCandle.v != null ? newCandle.v : 0,
-                        newCandle.T,
-                        modifiedFormattedDateTime,
-                    ]
-                );
-
-                console.log(`data saved to ${timeFrame} for ${symbol}`)
-            } catch (error) {
-                console.error('Error saving candle data to PostgreSQL:', error);
-            }
-        }
-
         const myResult = remover(refactored)
 
-        // this function will make other candles
-        const makeOtherCandles = async (allCandles, smallestTimeFrame, myStartTime, lastVolume, symbol) => {
-            // now we will make other candles from 1 minute last candle
-            const shouldMakeAllTimeFrames = ['1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w', '1M'];
-
-            const indexToKeep = shouldMakeAllTimeFrames.indexOf(smallestTimeFrame);
-            var resultArray = null
-            if (indexToKeep !== -1) {
-                resultArray = shouldMakeAllTimeFrames.slice(indexToKeep);
-            } else {
-                console.log(`The element ${smallestTimeFrame} was not found in the array.`);
-            }
-
-
-            const lastOneMinuteCandle = allCandles[smallestTimeFrame][0];
-            const candleStamp = allCandles[smallestTimeFrame][0].t;
-            const now = new Date(candleStamp * 1000);
-            const dayOfMonth = now.getUTCDate();
-            const hourOfDay = now.getUTCHours();
-            const minuteOfDay = now.getUTCMinutes();
-
-            if (lastOneMinuteCandle != undefined) {
-                for (const timeframe of resultArray) {
-
-                    var shouldMakeCandle = false;
-                    var addedTime = 0;
-                    var startTime = 0;
-                    var newV = false
-                    switch (timeframe) {
-                        case '5m':
-                            if (allCandles[timeframe][0] != undefined || minuteOfDay % 5 == 0) {
-
-                                addedTime = 300;
-                                shouldMakeCandle = true;
-
-                                if (minuteOfDay % 5 == 0) {
-                                    startTime = lastOneMinuteCandle.t;
-                                    timestamp = startTime; // Unix timestamp in seconds
-                                    newV = true;
-
-                                } else {
-                                    startTime = allCandles[timeframe][0].t
-                                }
-                            }
-                            break;
-
-                        case '15m':
-                            if (allCandles[timeframe][0] != undefined || minuteOfDay % 15 == 0) {
-                                addedTime = 900;
-                                shouldMakeCandle = true;
-                                if (minuteOfDay % 15 == 0) {
-                                    startTime = lastOneMinuteCandle.t;
-                                    timestamp = startTime; // Unix timestamp in seconds
-                                    newV = true;
-
-                                } else {
-                                    startTime = allCandles[timeframe][0].t
-                                }
-                            }
-
-                            break;
-
-                        case '30m':
-                            if (allCandles[timeframe][0] != undefined || minuteOfDay % 30 == 0) {
-                                addedTime = 1800;
-                                shouldMakeCandle = true;
-                                if (minuteOfDay % 30 == 0) {
-                                    startTime = lastOneMinuteCandle.t;
-                                    timestamp = startTime; // Unix timestamp in seconds
-                                    newV = true;
-
-                                } else {
-                                    startTime = allCandles[timeframe][0].t
-                                }
-                            }
-
-                            break;
-
-                        case '1h':
-                            if (allCandles[timeframe][0] != undefined || minuteOfDay == 0) {
-                                addedTime = 3600;
-                                shouldMakeCandle = true;
-                                if (minuteOfDay == 0) {
-                                    startTime = lastOneMinuteCandle.t;
-                                    timestamp = startTime; // Unix timestamp in seconds
-                                    newV = true;
-
-                                } else {
-                                    startTime = allCandles[timeframe][0].t
-                                }
-                            }
-
-                            break;
-
-                        case '4h':
-                            if (allCandles[timeframe][0] != undefined || (minuteOfDay == 0 && ((hourOfDay + 3) % 4 == 0))) {
-                                addedTime = 14400;
-                                shouldMakeCandle = true;
-                                if (minuteOfDay == 0 && ((hourOfDay + 3) % 4 == 0)) {
-                                    startTime = lastOneMinuteCandle.t;
-                                    timestamp = startTime; // Unix timestamp in seconds
-                                    newV = true;
-
-                                } else {
-                                    startTime = allCandles[timeframe][0].t
-                                }
-                            }
-
-                            break;
-
-                        case '1d':
-                            if (allCandles[timeframe][0] != undefined || (hourOfDay == 22 && minuteOfDay == 0)) {
-                                addedTime = 86400;
-                                shouldMakeCandle = true;
-                                if (hourOfDay == 22 && minuteOfDay == 0) {
-
-                                    startTime = lastOneMinuteCandle.t;
-                                    timestamp = startTime; // Unix timestamp in seconds
-                                    newV = true;
-
-
-                                } else {
-                                    startTime = allCandles[timeframe][0].t
-                                }
-                            }
-
-                            break;
-
-                        case '1w':
-                            if (allCandles[timeframe][0] != undefined || dayOfMonth % 7 == 0) {
-                                addedTime = 604800;
-                                shouldMakeCandle = true;
-                                if (dayOfMonth % 7 == 0) {
-                                    startTime = lastOneMinuteCandle.t;
-                                    timestamp = startTime; // Unix timestamp in seconds
-                                    newV = true;
-
-
-
-
-                                } else {
-                                    startTime = allCandles[timeframe][0].t
-                                }
-                            }
-
-                            break;
-
-                        case '1M':
-                            if (allCandles[timeframe][0] != undefined || ((dayOfMonth == 1) && (hourOfDay == 22) && (minuteOfDay == 0))) {
-                                addedTime = 2592000;
-                                shouldMakeCandle = true;
-                                if (dayOfMonth == 1) {
-                                    startTime = lastOneMinuteCandle.t;
-                                    timestamp = startTime; // Unix timestamp in seconds
-                                    newV = true;
-
-
-                                } else {
-                                    startTime = allCandles[timeframe][0].t
-                                }
-                            }
-
-                            break;
-
-                        default:
-                            shouldMakeCandle = false;
-                            addedTime = 0;
-                            break;
-                    }
-
-
-                    var shouldBe = 0;
-                    var openPrice, high, low, closeTime;
-                    if (shouldMakeCandle) {
-
-                        // this is for v
-                        if (!newV && allCandles[timeframe][0] != undefined) {
-
-                            if (lastOneMinuteCandle.v - lastVolume > 0) {
-                                shouldBe = allCandles[timeframe][0].v + (lastOneMinuteCandle.v - lastVolume)
-                            } else {
-                                if (lastVolume != lastOneMinuteCandle.v) {
-                                    shouldBe = allCandles[timeframe][0].v + lastOneMinuteCandle.v
-                                } else {
-                                    shouldBe = allCandles[timeframe][0].v
-                                }
-                            }
-
-                            openPrice = allCandles[timeframe][0].o;
-                            closeTime = allCandles[timeframe][0].t + addedTime
-
-
-                            if (allCandles[timeframe][0].h < lastOneMinuteCandle.h) {
-                                high = lastOneMinuteCandle.h
-                            } else {
-                                high = allCandles[timeframe][0].h
-                            }
-
-                            if (allCandles[timeframe][0].l > lastOneMinuteCandle.l) {
-                                low = lastOneMinuteCandle.l
-                            } else {
-                                low = allCandles[timeframe][0].l
-                            }
-                        } else {
-                            // console.log("####################################")
-                            shouldBe = lastOneMinuteCandle.v;
-                            openPrice = lastOneMinuteCandle.o;
-                            high = lastOneMinuteCandle.h
-                            low = lastOneMinuteCandle.l
-                            closeTime = lastOneMinuteCandle.t + addedTime
-                        }
-
-
-
-
-                        const newCandle = {
-                            t: startTime,
-                            T: closeTime,
-                            o: formatNumberWithTwoDecimals(openPrice),
-                            h: formatNumberWithTwoDecimals(high),
-                            l: formatNumberWithTwoDecimals(low),
-                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
-                            v: shouldBe,
-                        };
-
-
-                        // now we will add to each time Frame
-                        const existingCandleIndex = allCandles[timeframe].findIndex((candle) => candle.t == newCandle.t);
-
-                        if (existingCandleIndex >= 0) {
-                            // Update existing candle
-                            allCandles[timeframe][existingCandleIndex] = newCandle;
-                        } else {
-
-                            // Add new candle at the beginning
-                            allCandles[timeframe].unshift(newCandle);
-                            // console.log(allCandles["1m"])
-
-                            if (allCandles[timeframe].length >= 3) {
-                                // console.log(allCandles[timeframe].length)
-                                // Remove excess candles
-                                allCandles[timeframe].pop();
-
-                                if (allCandles[timeframe][1] != undefined) {
-                                    const shouldSaveCandle = {
-                                        t: allCandles[timeframe][1].t,
-                                        T: allCandles[timeframe][1].T,
-                                        c: allCandles[timeframe][1].c,
-                                        h: allCandles[timeframe][1].h,
-                                        l: allCandles[timeframe][1].l,
-                                        o: allCandles[timeframe][1].o,
-                                        v: allCandles[timeframe][1].v,
-                                    };
-
-                                    await saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
-                                }
-                            }
-
-
-                        }
-                    }
-
-
-
-                }
-                redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles), 'EX', 720).exec();
-
-            }
-
-        }
-
-
-        const shower = async (results) => {
-            results.forEach(result => {
-
-                const jsonData = result; // Parse the JSON string
-                const candleData = jsonData.p[1].sds_1.s[0].v;
-                var lastVolume = 0;
-                const newCandle = {
-                    t: candleData[0],
-                    T: jsonData.p[1].sds_1.lbs.bar_close_time,
-                    o: formatNumberWithTwoDecimals(candleData[1]),
-                    h: formatNumberWithTwoDecimals(candleData[2]),
-                    l: formatNumberWithTwoDecimals(candleData[3]),
-                    c: formatNumberWithTwoDecimals(candleData[4]),
-                    v: candleData[5],
-                };
-
-
-                if (allCandles['1m'][0] != undefined) {
-                    lastVolume = allCandles['1m'][0].v;
-                }
-
-
-
-                const existingCandleIndex = allCandles['1m'].findIndex((candle) => candle.t == newCandle.t);
-
-
-                if (existingCandleIndex >= 0) {
-                    // Update existing candle
-                    allCandles['1m'][existingCandleIndex] = newCandle;
-                } else {
-                    // Add new candle at the beginning
-                    allCandles['1m'].unshift(newCandle);
-                    // console.log(allCandles["1m"])
-
-                    if (allCandles['1m'].length >= 3) {
-                        // console.log(allCandles['1m'].length)
-                        // Remove excess candles
-                        allCandles['1m'].pop();
-
-                        if (allCandles['1m'][1] != undefined) {
-                            const shouldSaveCandle = {
-                                t: allCandles['1m'][1].t,
-                                T: allCandles['1m'][1].T,
-                                c: allCandles['1m'][1].c,
-                                h: allCandles['1m'][1].h,
-                                l: allCandles['1m'][1].l,
-                                o: allCandles['1m'][1].o,
-                                v: allCandles['1m'][1].v,
-                            };
-
-                            saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
-                        }
-                    }
-                }
-
-                makeOtherCandles(allCandles, "1m", "", lastVolume, symbolName)
-
-                redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles), 'EX', 720).exec();
-
-
-
-                // console.log(allCandles)
-
-
-
-
-
-
-
-            });
-
-
-        }
-
-
         if (myResult != null) {
-            shower(myResult)
+            shower(myResult, allCandles, exchange, symbolName)
         }
 
-        // console.log(allCandles)
+        console.log(allCandles)
 
 
 
