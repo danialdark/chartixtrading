@@ -8,7 +8,7 @@ const port = 3000;
 const redis = new Redis({
     host: 'localhost',
     port: '6379',
-    password: 'D@n!@l12098',
+    password: '',
     enableCompression: true,
 });
 var pipeline = redis.pipeline();
@@ -21,8 +21,8 @@ const redisTimeFrames = {
     "1h": "60",
     "4h": "240",
     "1d": "1D",
-    "1w": "1w",
-    "1m": "1M",
+    "1w": "1W",
+    "1M": "1M",
 }
 
 // const serverUrl = 'wss://data.tradingview.com/socket.io/websocket?from=chart';
@@ -203,6 +203,9 @@ async function makeMyOpenTime(timeFrame, timeFrameOpenTimes, hour, minute) {
     var lessThanTarget = null;
     var myHour = hour
     var myMinute = minute
+    var year = new Date().getUTCFullYear();   // Change to your desired year
+    var month = new Date().getUTCMonth();     // 0-based index (0 = January, 1 = February, etc.)
+    var day = new Date().getUTCDate();
 
     if (["5m", "15m", "30m"].includes(timeFrame)) {
         lessThanTarget = timeFrameOpenTimes.filter((timeFrameOpenTime) => timeFrameOpenTime < minute);
@@ -212,12 +215,9 @@ async function makeMyOpenTime(timeFrame, timeFrameOpenTimes, hour, minute) {
         myHour = Math.max(...lessThanTarget);    // 24-hour format
     }
 
-    if (lessThanTarget.length > 0) {
-        // Define the date, hour, and minute components
-        var year = new Date().getUTCFullYear();   // Change to your desired year
-        var month = new Date().getUTCMonth();     // 0-based index (0 = January, 1 = February, etc.)
-        var day = new Date().getUTCDate();       // 1-based day of the month
 
+
+    if (lessThanTarget.length > 0) {
         // Create a new Date object with the specified components
         var date = new Date(Date.UTC(year, month, day, myHour, myMinute));
 
@@ -355,6 +355,7 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
     const now = new Date(candleStamp * 1000);
     const hourOfDay = now.getUTCHours();
     const minuteOfDay = now.getUTCMinutes();
+    const dayOfMonth = now.getUTCDate();
     var symbolConfigs = {
         // "INTOTHEBLOCK:BTC_RETAIL": {  },
         // "INTOTHEBLOCK:BTC_HASHRATE": {  },
@@ -467,8 +468,8 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                 "1h": minuteOfDay == 0,
                 "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
                 "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": false,
-                "1M": false,
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
             },
             openTimes: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
@@ -881,6 +882,7 @@ async function startStream(exchange, symbolName, resolver, allCandles, number) {
     if (redisData != null) {
         allCandles = redisData
     }
+
 
 
     ws.on('open', () => {
