@@ -148,31 +148,31 @@ const symbols = {
     // "OANDA:USDCAD": { resolver: 141, shouldActive: true, active: true },
     // "OANDA:USDJPY": { resolver: 141, shouldActive: true, active: true },
 
-    // "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:EURCHF": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:GBPJPY": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:GBPNZD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:GBPAUD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:GBPCAD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:GBPCHF": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:AUDCAD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:AUDNZD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:AUDJPY": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:AUDCHF": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:CHFJPY": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:XAGUSD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:NZDCAD": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:NZDCHF": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:NZDJPY": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:EURGBP": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:CADCHF": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:CADJPY": { resolver: 141, shouldActive: true, active: true },
-    // "OANDA:USDTRY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPNZD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPAUD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPCAD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:AUDCAD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:AUDNZD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:AUDJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:AUDCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:CHFJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:XAGUSD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:NZDCAD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:NZDCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:NZDJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURGBP": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:CADCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:CADJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:USDTRY": { resolver: 141, shouldActive: true, active: true },
     "OANDA:XAUUSD": {
         resolver: 141, shouldActive: true, active: true
     },
@@ -429,37 +429,607 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
         // "COMEX:HRC1!": {  },
         // "MCX:ZINC1!": {  },
         // "FX:XAUUSD": {  },
-        // "OANDA:EURUSD": {  },
-        // "OANDA:GBPUSD": {  },
-        // "OANDA:USDCHF": {  },
-        // "OANDA:USDCAD": {  },
-        // "OANDA:USDJPY": {  },
+        // "OANDA:EURUSD": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
+        // "OANDA:GBPUSD": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
+        // "OANDA:USDCHF": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
+        // "OANDA:USDCAD": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
+        // "OANDA:USDJPY": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
 
-        // "OANDA:AUDUSD": {  },
-        // "OANDA:NZDUSD": {  },
-        // "OANDA:EURJPY": {  },
-        // "OANDA:EURCAD": {  },
-        // "OANDA:EURNZD": {  },
-        // "OANDA:EURAUD": {  },
-        // "OANDA:EURCHF": {  },
-        // "OANDA:GBPJPY": {  },
-        // "OANDA:GBPNZD": {  },
-        // "OANDA:GBPAUD": {  },
-        // "OANDA:GBPCAD": {  },
-        // "OANDA:GBPCHF": {  },
-        // "OANDA:AUDCAD": {  },
-        // "OANDA:AUDNZD": {  },
-        // "OANDA:AUDJPY": {  },
-        // "OANDA:AUDCHF": {  },
-        // "OANDA:CHFJPY": {  },
-        // "OANDA:XAGUSD": {  },
-        // "OANDA:NZDCAD": {  },
-        // "OANDA:NZDCHF": {  },
-        // "OANDA:NZDJPY": {  },
-        // "OANDA:EURGBP": {  },
-        // "OANDA:CADCHF": {  },
-        // "OANDA:CADJPY": {  },
-        // "OANDA:USDTRY": {  },
+        "OANDA:AUDUSD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:NZDUSD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:EURJPY": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:EURCAD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:EURNZD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:EURAUD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:EURCHF": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:GBPJPY": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:GBPNZD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:GBPAUD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:GBPCAD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:GBPCHF": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:AUDCAD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:AUDNZD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:AUDJPY": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:AUDCHF": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:CHFJPY": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:XAGUSD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:NZDCAD": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:NZDCHF": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:NZDJPY": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:EURGBP": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:CADCHF": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:CADJPY": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
+        "OANDA:USDTRY": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+                "1d": (hourOfDay == 22 && minuteOfDay == 0),
+                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+            }
+        },
         "OANDA:XAUUSD": {
             config: {
                 "5m": minuteOfDay % 5 == 0,
@@ -792,7 +1362,7 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                                 v: allCandles[timeframe][1].v,
                             };
 
-                            // await saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
+                            await saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
                         }
                     }
 
@@ -858,7 +1428,7 @@ const shower = async (results, allCandles, exchange, symbolName) => {
                         v: allCandles['1m'][1].v,
                     };
 
-                    // saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
+                    saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
                 }
             }
         }
