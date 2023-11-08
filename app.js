@@ -8,7 +8,7 @@ const port = 3000;
 const redis = new Redis({
     host: 'localhost',
     port: '6379',
-    password: '',
+    password: 'D@n!@l12098',
     enableCompression: true,
 });
 var pipeline = redis.pipeline();
