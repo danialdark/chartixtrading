@@ -215,6 +215,12 @@ async function makeMyOpenTime(timeFrame, timeFrameOpenTimes, hour, minute) {
         myHour = Math.max(...lessThanTarget);    // 24-hour format
     }
 
+    if (timeFrame == "1d") {
+        myMinute = 0
+        myHour = 22
+        day = day - 1
+    }
+
 
 
     if (lessThanTarget.length > 0) {
