@@ -1228,8 +1228,19 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                             startTime = allCandles[timeframe][0].t
                         }
                     } else {
-                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
+                        var madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
                         startTime = madeOpenTime
+
+                        if (madeOpenTime == 0) {
+                            var year = new Date().getUTCFullYear();   // Change to your desired year
+                            var month = new Date().getUTCMonth();     // 0-based index (0 = January, 1 = February, etc.)
+                            dayOfMonth - 1
+                            // Create a new Date object with the specified components
+                            var date = new Date(Date.UTC(year, month, dayOfMonth - 1, symbolConfigs[fullName].openTimes[timeframe][0], 0));
+
+                            // Calculate the Unix timestamp (in seconds) from the Date object
+                            madeOpenTime = Math.floor(date.getTime() / 1000);
+                        }
 
                         allCandles[timeframe][0] = {
                             t: madeOpenTime,
