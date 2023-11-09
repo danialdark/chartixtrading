@@ -8,7 +8,7 @@ const port = 3000;
 const redis = new Redis({
     host: 'localhost',
     port: '6379',
-    password: '',
+    password: 'D@n!@l12098',
     enableCompression: true,
 });
 var pipeline = redis.pipeline();
@@ -70,109 +70,109 @@ const tokenMap = {
 }
 
 const symbols = {
-    "INTOTHEBLOCK:BTC_RETAIL": { resolver: 152, shouldActive: true, active: false },
-    "INTOTHEBLOCK:BTC_HASHRATE": { resolver: 154, shouldActive: true, active: false },
-    "INTOTHEBLOCK:BTC_TRADERS": { resolver: 153, shouldActive: true, active: false },
-    "INTOTHEBLOCK:BTC_BEARSVOLUME": { resolver: 157, shouldActive: true, active: false },
-    "INTOTHEBLOCK:BTC_BULLSVOLUME": { resolver: 157, shouldActive: true, active: false },
-    "INTOTHEBLOCK:BTC_TXVOLUME": { resolver: 154, shouldActive: true, active: false },
-    "INTOTHEBLOCK:BTC_TXVOLUMEUSD": { resolver: 157, shouldActive: true, active: false },
-    "INTOTHEBLOCK:ETH_RETAIL": { resolver: 152, shouldActive: true, active: false },
-    "INTOTHEBLOCK:ETH_TRADERS": { resolver: 153, shouldActive: true, active: false },
-    "INTOTHEBLOCK:ETH_BEARSVOLUME": { resolver: 157, shouldActive: true, active: false },
-    "INTOTHEBLOCK:ETH_BULLSVOLUME": { resolver: 157, shouldActive: true, active: false },
-    "INTOTHEBLOCK:ETH_TXVOLUME": { resolver: 154, shouldActive: true, active: false },
-    "INTOTHEBLOCK:ETH_TXVOLUMEUSD": { resolver: 157, shouldActive: true, active: false },
-    "ECONOMICS:USINTR": { resolver: 145, shouldActive: true, active: false },
-    "ECONOMICS:USIRYY": { resolver: 145, shouldActive: true, active: false },
-    "FRED:UNRATE": { resolver: 140, shouldActive: true, active: false, times: 1 },
-    "FRED:GDP": { resolver: 137, shouldActive: true, active: false, times: 1 },
-    "FRED:T5YIE": { resolver: 139, shouldActive: true, active: false, times: 1 },
-    "FRED:T10YIE": { resolver: 140, shouldActive: true, active: false, times: 1 },//1 means every month
-    "FRED:BAMLH0A0HYM2": { resolver: 146, shouldActive: true, active: false },
-    "ECONOMICS:USNFP": { resolver: 144, shouldActive: true, active: false },
-    "NYMEX:MBE1!": { resolver: 140, shouldActive: true, active: false },
+    // "INTOTHEBLOCK:BTC_RETAIL": { resolver: 152, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:BTC_HASHRATE": { resolver: 154, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:BTC_TRADERS": { resolver: 153, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:BTC_BEARSVOLUME": { resolver: 157, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:BTC_BULLSVOLUME": { resolver: 157, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:BTC_TXVOLUME": { resolver: 154, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:BTC_TXVOLUMEUSD": { resolver: 157, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:ETH_RETAIL": { resolver: 152, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:ETH_TRADERS": { resolver: 153, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:ETH_BEARSVOLUME": { resolver: 157, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:ETH_BULLSVOLUME": { resolver: 157, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:ETH_TXVOLUME": { resolver: 154, shouldActive: true, active: true },
+    // "INTOTHEBLOCK:ETH_TXVOLUMEUSD": { resolver: 157, shouldActive: true, active: true },
+    // "ECONOMICS:USINTR": { resolver: 145, shouldActive: true, active: true },
+    // "ECONOMICS:USIRYY": { resolver: 145, shouldActive: true, active: true },
+    // "FRED:UNRATE": { resolver: 140, shouldActive: true, active: true , times: 1},
+    // "FRED:GDP": { resolver: 137, shouldActive: true, active: true , times: 1},
+    // "FRED:T5YIE": { resolver: 139, shouldActive: true, active: true , times: 1},
+    // "FRED:T10YIE": { resolver: 140, shouldActive: true, active: true , times: 1},//1 means every month
+    // "FRED:BAMLH0A0HYM2": { resolver: 146, shouldActive: true, active: true },
+    // "ECONOMICS:USNFP": { resolver: 144, shouldActive: true, active: true },
+    // "NYMEX:MBE1!": { resolver: 140, shouldActive: true, active: true },
 
 
 
-    "XETR:DAX": { resolver: 137, shouldActive: true, active: false },
-    "CRYPTOCAP:BTC.D": { resolver: 144, shouldActive: true, active: true, times: 0 },
-    "CRYPTOCAP:ETH.D": { resolver: 144, shouldActive: true, active: true, times: 0 },
-    "CRYPTOCAP:USDT.D": { resolver: 145, shouldActive: true, active: true, times: 0 },
-    "CRYPTOCAP:OTHERS.D": { resolver: 147, shouldActive: true, active: true, times: 0 },
-    "CRYPTOCAP:Total": { resolver: 144, shouldActive: true, active: true, times: 0 },
-    "CRYPTOCAP:Total2": { resolver: 145, shouldActive: true, active: true, times: 0 },
-    "CRYPTOCAP:Total3": { resolver: 145, shouldActive: true, active: true, times: 0 },
-    "CRYPTOCAP:TOTALDEFI": { resolver: 148, shouldActive: true, active: true, times: 0 },//0 is every day
-    "NASDAQ:FSTOK300": { resolver: 144, shouldActive: true, active: false },
-    "NASDAQ:FSTOK10": { resolver: 143, shouldActive: true, active: false },
-    "NASDAQ:FSTOK40": { resolver: 143, shouldActive: true, active: false },
-    "NASDAQ:FSTOK250": { resolver: 144, shouldActive: true, active: false },
-    "NASDAQ:FSTOKAGG": { resolver: 144, shouldActive: true, active: false },
-    "TVC:US05Y": { resolver: 138, shouldActive: true, active: false },
-    "TVC:US10Y": { resolver: 138, shouldActive: true, active: false },
-    "CME_MINI:NQ1!": { resolver: 142, shouldActive: true, active: false },
-    "CME_MINI:ES1!": { resolver: 142, shouldActive: true, active: false },
-    "CBOT_MINI:YM1!": { resolver: 143, shouldActive: true, active: false },
-    "VANTAGE:DJ30FT": { resolver: 143, shouldActive: true, active: false },
-    "CAPITALCOM:DXY": { resolver: 143, shouldActive: true, active: false },
-    "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:SPX500USD": { resolver: 144, shouldActive: true, active: false },
-    "TVC:NDQ": { resolver: 136, shouldActive: true, active: false },
+    // "XETR:DAX": { resolver: 137, shouldActive: true, active: true },
+    // "CRYPTOCAP:BTC.D": { resolver: 144, shouldActive: true, active: true, times: 0 },
+    // "CRYPTOCAP:ETH.D": { resolver: 144, shouldActive: true, active: true, times: 0 },
+    // "CRYPTOCAP:USDT.D": { resolver: 145, shouldActive: true, active: true, times: 0 },
+    // "CRYPTOCAP:OTHERS.D": { resolver: 147, shouldActive: true, active: true, times: 0 },
+    // "CRYPTOCAP:Total": { resolver: 144, shouldActive: true, active: true, times: 0 },
+    // "CRYPTOCAP:Total2": { resolver: 145, shouldActive: true, active: true, times: 0 },
+    // "CRYPTOCAP:Total3": { resolver: 145, shouldActive: true, active: true, times: 0 },
+    // "CRYPTOCAP:TOTALDEFI": { resolver: 148, shouldActive: true, active: true, times: 0 },//0 is every day
+    // "NASDAQ:FSTOK300": { resolver: 144, shouldActive: true, active: true },
+    // "NASDAQ:FSTOK10": { resolver: 143, shouldActive: true, active: true },
+    // "NASDAQ:FSTOK40": { resolver: 143, shouldActive: true, active: true },
+    // "NASDAQ:FSTOK250": { resolver: 144, shouldActive: true, active: true },
+    // "NASDAQ:FSTOKAGG": { resolver: 144, shouldActive: true, active: true },
+    // "TVC:US05Y": { resolver: 138, shouldActive: true, active: true },
+    // "TVC:US10Y": { resolver: 138, shouldActive: true, active: true },
+    // "CME_MINI:NQ1!": { resolver: 142, shouldActive: true, active: true },
+    // "CME_MINI:ES1!": { resolver: 142, shouldActive: true, active: true },
+    // "CBOT_MINI:YM1!": { resolver: 143, shouldActive: true, active: true },
+    // "VANTAGE:DJ30FT": { resolver: 143, shouldActive: true, active: true },
+    // "CAPITALCOM:DXY": { resolver: 143, shouldActive: true, active: true },
+    // "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:SPX500USD": { resolver: 144, shouldActive: true, active: true },
+    // "TVC:NDQ": { resolver: 136, shouldActive: true, active: true },
 
-    "TVC:US20Y": { resolver: 138, shouldActive: true, active: false },
-    "AMEX:GDX": { resolver: 137, shouldActive: true, active: false },
-    "AMEX:GDXJ": { resolver: 138, shouldActive: true, active: false },
-    "AMEX:GLD": { resolver: 137, shouldActive: true, active: false },
-    "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: false },
-    "CAPITALCOM:US30": { resolver: 144, shouldActive: true, active: false },
-    "NASDAQ:NDX": { resolver: 139, shouldActive: true, active: false },
-    "CAPITALCOM:US500": { resolver: 145, shouldActive: true, active: false },
-    "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: false },
-    "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: false },
-    "TVC:BXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:EXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:SXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:JXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:CXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:AXY": { resolver: 136, shouldActive: true, active: false },
-    "TVC:ZXY": { resolver: 136, shouldActive: true, active: false },
-    "CAPITALCOM:HK50": { resolver: 144, shouldActive: true, active: false },
-    "CAPITALCOM:NATURALGAS": { resolver: 150, shouldActive: true, active: false },
-    "COMEX:HRC1!": { resolver: 140, shouldActive: true, active: false },
-    "MCX:ZINC1!": { resolver: 139, shouldActive: true, active: false },
-    "FX:XAUUSD": { resolver: 138, shouldActive: true, active: false },
-    "OANDA:EURUSD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:GBPUSD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:USDCHF": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:USDCAD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:USDJPY": { resolver: 141, shouldActive: true, active: false },
+    // "TVC:US20Y": { resolver: 138, shouldActive: true, active: true },
+    // "AMEX:GDX": { resolver: 137, shouldActive: true, active: true },
+    // "AMEX:GDXJ": { resolver: 138, shouldActive: true, active: true },
+    // "AMEX:GLD": { resolver: 137, shouldActive: true, active: true },
+    // "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: true },
+    // "CAPITALCOM:US30": { resolver: 144, shouldActive: true, active: true },
+    // "NASDAQ:NDX": { resolver: 139, shouldActive: true, active: true },
+    // "CAPITALCOM:US500": { resolver: 145, shouldActive: true, active: true },
+    // "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: true },
+    // "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: true },
+    // "TVC:BXY": { resolver: 136, shouldActive: true, active: true },
+    // "TVC:EXY": { resolver: 136, shouldActive: true, active: true },
+    // "TVC:SXY": { resolver: 136, shouldActive: true, active: true },
+    // "TVC:JXY": { resolver: 136, shouldActive: true, active: true },
+    // "TVC:CXY": { resolver: 136, shouldActive: true, active: true },
+    // "TVC:AXY": { resolver: 136, shouldActive: true, active: true },
+    // "TVC:ZXY": { resolver: 136, shouldActive: true, active: true },
+    // "CAPITALCOM:HK50": { resolver: 144, shouldActive: true, active: true },
+    // "CAPITALCOM:NATURALGAS": { resolver: 150, shouldActive: true, active: true },
+    // "COMEX:HRC1!": { resolver: 140, shouldActive: true, active: true },
+    // "MCX:ZINC1!": { resolver: 139, shouldActive: true, active: true },
+    // "FX:XAUUSD": { resolver: 138, shouldActive: true, active: true },
+    // "OANDA:EURUSD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:GBPUSD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:USDCHF": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:USDCAD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:USDJPY": { resolver: 141, shouldActive: true, active: true },
 
-    "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURCHF": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:GBPJPY": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:GBPNZD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:GBPAUD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:GBPCAD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:GBPCHF": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:AUDCAD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:AUDNZD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:AUDJPY": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:AUDCHF": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:CHFJPY": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:XAGUSD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:NZDCAD": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:NZDCHF": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:NZDJPY": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:EURGBP": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:CADCHF": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:CADJPY": { resolver: 141, shouldActive: true, active: false },
-    "OANDA:USDTRY": { resolver: 141, shouldActive: true, active: false },
+    "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPNZD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPAUD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPCAD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:GBPCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:AUDCAD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:AUDNZD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:AUDJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:AUDCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:CHFJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:XAGUSD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:NZDCAD": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:NZDCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:NZDJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:EURGBP": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:CADCHF": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:CADJPY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:USDTRY": { resolver: 141, shouldActive: true, active: true },
     "OANDA:XAUUSD": {
         resolver: 141, shouldActive: true, active: true
     },
@@ -363,1467 +363,178 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
     const minuteOfDay = now.getUTCMinutes();
     const dayOfMonth = now.getUTCDate();
     var symbolConfigs = {
-        "INTOTHEBLOCK:BTC_RETAIL": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:BTC_HASHRATE": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:BTC_TRADERS": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:BTC_BEARSVOLUME": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:BTC_BULLSVOLUME": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:BTC_TXVOLUME": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:BTC_TXVOLUMEUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:ETH_RETAIL": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:ETH_TRADERS": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:ETH_BEARSVOLUME": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:ETH_BULLSVOLUME": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:ETH_TXVOLUME": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "INTOTHEBLOCK:ETH_TXVOLUMEUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "ECONOMICS:USINTR": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "ECONOMICS:USIRYY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "FRED:UNRATE": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "FRED:GDP": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "FRED:T5YIE": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "FRED:T10YIE": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },//1 means every month
-        "FRED:BAMLH0A0HYM2": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "ECONOMICS:USNFP": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "NYMEX:MBE1!": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "XETR:DAX": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CRYPTOCAP:BTC.D": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CRYPTOCAP:ETH.D": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CRYPTOCAP:USDT.D": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CRYPTOCAP:OTHERS.D": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CRYPTOCAP:Total": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CRYPTOCAP:Total2": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CRYPTOCAP:Total3": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CRYPTOCAP:TOTALDEFI": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },//0 is every day
-        "NASDAQ:FSTOK300": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "NASDAQ:FSTOK10": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "NASDAQ:FSTOK40": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "NASDAQ:FSTOK250": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "NASDAQ:FSTOKAGG": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:US05Y": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:US10Y": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CME_MINI:NQ1!": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CME_MINI:ES1!": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CBOT_MINI:YM1!": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "VANTAGE:DJ30FT": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CAPITALCOM:DXY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "FOREXCOM:DJI": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:SPX500USD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:NDQ": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
+        // "INTOTHEBLOCK:BTC_RETAIL": {  },
+        // "INTOTHEBLOCK:BTC_HASHRATE": {  },
+        // "INTOTHEBLOCK:BTC_TRADERS": {  },
+        // "INTOTHEBLOCK:BTC_BEARSVOLUME": {  },
+        // "INTOTHEBLOCK:BTC_BULLSVOLUME": {  },
+        // "INTOTHEBLOCK:BTC_TXVOLUME": {  },
+        // "INTOTHEBLOCK:BTC_TXVOLUMEUSD": {  },
+        // "INTOTHEBLOCK:ETH_RETAIL": {  },
+        // "INTOTHEBLOCK:ETH_TRADERS": {  },
+        // "INTOTHEBLOCK:ETH_BEARSVOLUME": {  },
+        // "INTOTHEBLOCK:ETH_BULLSVOLUME": {  },
+        // "INTOTHEBLOCK:ETH_TXVOLUME": {  },
+        // "INTOTHEBLOCK:ETH_TXVOLUMEUSD": {  },
+        // "ECONOMICS:USINTR": {  },
+        // "ECONOMICS:USIRYY": {  },
+        // "FRED:UNRATE": { },
+        // "FRED:GDP": { },
+        // "FRED:T5YIE": { },
+        // "FRED:T10YIE": { },//1 means every month
+        // "FRED:BAMLH0A0HYM2": {  },
+        // "ECONOMICS:USNFP": {  },
+        // "NYMEX:MBE1!": {  },
 
-        "TVC:US20Y": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "AMEX:GDX": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "AMEX:GDXJ": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "AMEX:GLD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "FOREXCOM:DJI": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CAPITALCOM:US30": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "NASDAQ:NDX": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CAPITALCOM:US500": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CAPITALCOM:EU50": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CAPITALCOM:CN50": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:BXY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:EXY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:SXY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:JXY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:CXY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:AXY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "TVC:ZXY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CAPITALCOM:HK50": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "CAPITALCOM:NATURALGAS": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "COMEX:HRC1!": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "MCX:ZINC1!": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "FX:XAUUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:EURUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:GBPUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:USDCHF": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:USDCAD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:USDJPY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
+
+
+        // "XETR:DAX": {  },
+        // "CRYPTOCAP:BTC.D": {  },
+        // "CRYPTOCAP:ETH.D": {  },
+        // "CRYPTOCAP:USDT.D": {  },
+        // "CRYPTOCAP:OTHERS.D": {  },
+        // "CRYPTOCAP:Total": {  },
+        // "CRYPTOCAP:Total2": {  },
+        // "CRYPTOCAP:Total3": {  },
+        // "CRYPTOCAP:TOTALDEFI": {  },//0 is every day
+        // "NASDAQ:FSTOK300": {  },
+        // "NASDAQ:FSTOK10": {  },
+        // "NASDAQ:FSTOK40": {  },
+        // "NASDAQ:FSTOK250": {  },
+        // "NASDAQ:FSTOKAGG": {  },
+        // "TVC:US05Y": {  },
+        // "TVC:US10Y": {  },
+        // "CME_MINI:NQ1!": {  },
+        // "CME_MINI:ES1!": {  },
+        // "CBOT_MINI:YM1!": {  },
+        // "VANTAGE:DJ30FT": {  },
+        // "CAPITALCOM:DXY": {  },
+        // "FOREXCOM:DJI": {  },
+        // "OANDA:SPX500USD": {  },
+        // "TVC:NDQ": {  },
+
+        // "TVC:US20Y": {  },
+        // "AMEX:GDX": {  },
+        // "AMEX:GDXJ": {  },
+        // "AMEX:GLD": {  },
+        // "FOREXCOM:DJI": {  },
+        // "CAPITALCOM:US30": {  },
+        // "NASDAQ:NDX": {  },
+        // "CAPITALCOM:US500": {  },
+        // "CAPITALCOM:EU50": {  },
+        // "CAPITALCOM:CN50": {  },
+        // "TVC:BXY": {  },
+        // "TVC:EXY": {  },
+        // "TVC:SXY": {  },
+        // "TVC:JXY": {  },
+        // "TVC:CXY": {  },
+        // "TVC:AXY": {  },
+        // "TVC:ZXY": {  },
+        // "CAPITALCOM:HK50": {  },
+        // "CAPITALCOM:NATURALGAS": {  },
+        // "COMEX:HRC1!": {  },
+        // "MCX:ZINC1!": {  },
+        // "FX:XAUUSD": {  },
+        // "OANDA:EURUSD": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
+        // "OANDA:GBPUSD": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
+        // "OANDA:USDCHF": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
+        // "OANDA:USDCAD": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
+        // "OANDA:USDJPY": {
+        //     config: {
+        //         "5m": minuteOfDay % 5 == 0,
+        //         "15m": minuteOfDay % 15 == 0,
+        //         "30m": minuteOfDay % 30 == 0,
+        //         "1h": minuteOfDay == 0,
+        //         "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
+        //         "1d": (hourOfDay == 22 && minuteOfDay == 0),
+        //         "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
+        //         "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+        //     },
+        //     openTimes: {
+        //         "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+        //         "15m": [0, 15, 30, 45, 60],
+        //         "30m": [0, 30, 60],
+        //         "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+        //         "4h": [22, 2, 6, 10, 14, 18],
+        //         "1d": [22],
+        //     }
+        // },
 
         "OANDA:AUDUSD": {
             config: {
@@ -2668,7 +1379,7 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                                 v: allCandles[timeframe][1].v,
                             };
 
-                            // await saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
+                            await saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
                         }
                     }
 
@@ -2679,7 +1390,7 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
 
 
         }
-        // redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
+        redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
 
     }
 
@@ -2734,14 +1445,14 @@ const shower = async (results, allCandles, exchange, symbolName) => {
                         v: allCandles['1m'][1].v,
                     };
 
-                    // saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
+                    saveCandleDataToPostgreSQL(symbolName, '1m', shouldSaveCandle);
                 }
             }
         }
 
         makeOtherCandles(allCandles, "1m", lastVolume, exchange + ":" + symbolName, symbolName)
 
-        // redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
+        redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
     });
 
 
