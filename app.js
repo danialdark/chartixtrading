@@ -1510,7 +1510,7 @@ async function startStream(exchange, symbolName, resolver, allCandles, number) {
             shower(myResult, allCandles, exchange, symbolName)
         }
 
-        console.log(allCandles)
+        // console.log(allCandles)
 
 
 
@@ -1566,6 +1566,7 @@ startStreams(symbols)
 app.get('/active/:symbol', (req, res) => {
     const symbol = req.params.symbol;
     symbols[symbol].active = false
+    console.log(symbol + " activated successfully")
     res.send("activated");
 });
 
