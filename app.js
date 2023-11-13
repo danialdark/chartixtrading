@@ -1524,6 +1524,8 @@ async function startStream(exchange, symbolName, resolver, allCandles, number) {
 
     ws.on('error', (error) => {
         console.error('WebSocket error:', error);
+        // Close only the errored WebSocket connection
+        ws.close();
     });
 }
 
