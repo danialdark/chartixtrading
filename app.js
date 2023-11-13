@@ -2125,7 +2125,7 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
 
             if (shouldMakeCandle(allCandles, timeframe, lastOneMinuteCandle, startTime, config)) {
                 const shouldBe = calculateVolume(allCandles, timeframe, lastOneMinuteCandle, lastVolume, newV);
-                const { openPrice, high, low, closeTime } = calculateOHLC(allCandles, lastOneMinuteCandle, addedTime, newV);
+                const { openPrice, high, low, closeTime } = calculateOHLC(allCandles, timeframe, lastOneMinuteCandle, addedTime, newV);
 
                 const newCandle = createCandle({
                     t: startTime,
@@ -2187,7 +2187,7 @@ const calculateVolume = (allCandles, timeframe, lastOneMinuteCandle, lastVolume,
     return lastOneMinuteCandle.v;
 };
 
-const calculateOHLC = (allCandles, lastOneMinuteCandle, addedTime, newV) => {
+const calculateOHLC = (allCandles, timeframe, lastOneMinuteCandle, addedTime, newV) => {
     if (!newV && allCandles[timeframe][0] !== undefined) {
         const openPrice = allCandles[timeframe][0].o;
         const closeTime = allCandles[timeframe][0].t + addedTime;
