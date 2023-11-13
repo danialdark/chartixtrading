@@ -2137,7 +2137,7 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                     v: shouldBe,
                 });
 
-                updateCandles(allCandles, timeframe, newCandle);
+                updateCandles(allCandles,symbolName, timeframe, newCandle);
             }
         }
     }
@@ -2204,7 +2204,7 @@ const calculateOHLC = (allCandles, timeframe, lastOneMinuteCandle, addedTime, ne
     }
 };
 
-const updateCandles = (allCandles, timeframe, newCandle) => {
+const updateCandles = (allCandles,symbolName, timeframe, newCandle) => {
     const existingCandleIndex = allCandles[timeframe].findIndex((candle) => candle.t === newCandle.t);
 
     if (existingCandleIndex >= 0) {
