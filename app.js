@@ -199,6 +199,10 @@ async function getSymbolIdByName(symbolName) {
 }
 
 async function makeMyOpenTime(timeFrame, timeFrameOpenTimes, hour, minute) {
+    if (!timeFrameOpenTimes || !Array.isArray(timeFrameOpenTimes)) {
+        console.error(`Invalid or missing timeFrameOpenTimes for ${timeFrame}`);
+        return 0; // Or return a default value as needed
+    }
 
     var lessThanTarget = null;
     var myHour = hour
