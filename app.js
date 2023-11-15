@@ -1156,13 +1156,21 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                     break;
 
                 case '1h':
-                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
+                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe] || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
                         addedTime = 3600;
                         shouldMakeCandle = true;
                         if (symbolConfigs[fullName].config[timeframe]) {
                             startTime = lastOneMinuteCandle.t;
                             timestamp = startTime; // Unix timestamp in seconds
                             newV = true;
+
+                            if (((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
+                                var shouldHourChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay , 0));
+                                // Calculate the Unix timestamp (in seconds) from the Date object
+                                var shouldHourTimestamp = Math.floor(shouldHourChange.getTime() / 1000);
+                                startTime = shouldHourTimestamp;
+                                timestamp = shouldHourTimestamp;
+                            }
 
                         } else {
                             startTime = allCandles[timeframe][0].t
@@ -1185,13 +1193,22 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                     break;
 
                 case '4h':
-                    if (allCandles[timeframe][0] != undefined || (symbolConfigs[fullName].config[timeframe])) {
+                    if (allCandles[timeframe][0] != undefined || (symbolConfigs[fullName].config[timeframe]) || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
                         addedTime = 14400;
                         shouldMakeCandle = true;
-                        if (symbolConfigs[fullName].config[timeframe]) {
+                        if (symbolConfigs[fullName].config[timeframe] || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
                             startTime = lastOneMinuteCandle.t;
                             timestamp = startTime; // Unix timestamp in seconds
                             newV = true;
+
+                            if (((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
+                                var shouldChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay - 1, 0));
+                                // Calculate the Unix timestamp (in seconds) from the Date object
+                                var shouldTimestamp = Math.floor(shouldChange.getTime() / 1000);
+                                startTime = shouldTimestamp;
+                                timestamp = shouldTimestamp;
+                            }
+
 
                         } else {
                             startTime = allCandles[timeframe][0].t
@@ -1214,7 +1231,7 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                     break;
 
                 case '1d':
-                    if (allCandles[timeframe][0] != undefined || (symbolConfigs[fullName].config[timeframe])) {
+                    if (allCandles[timeframe][0] != undefined || (symbolConfigs[fullName].config[timeframe]) || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
                         addedTime = 86400;
                         shouldMakeCandle = true;
                         if (symbolConfigs[fullName].config[timeframe]) {
@@ -1223,6 +1240,13 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                             timestamp = startTime; // Unix timestamp in seconds
                             newV = true;
 
+                            if (((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
+                                var shouldDayChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay - 1, 0));
+                                // Calculate the Unix timestamp (in seconds) from the Date object
+                                var shouldDayTimestamp = Math.floor(shouldDayChange.getTime() / 1000);
+                                startTime = shouldDayTimestamp;
+                                timestamp = shouldDayTimestamp;
+                            }
 
                         } else {
                             startTime = allCandles[timeframe][0].t
@@ -1263,10 +1287,6 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                             startTime = lastOneMinuteCandle.t;
                             timestamp = startTime; // Unix timestamp in seconds
                             newV = true;
-
-
-
-
                         } else {
                             startTime = allCandles[timeframe][0].t
                         }
@@ -1387,7 +1407,6 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
             }
         }
         redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
-
     }
 
 }
