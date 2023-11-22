@@ -131,7 +131,7 @@ const symbols = {
     // "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: true },
     // "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: true },
     // "TVC:BXY": { resolver: 136, shouldActive: true, active: true },
-    // "TVC:EXY": { resolver: 136, shouldActive: true, active: true },
+    "TVC:EXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:SXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:JXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:CXY": { resolver: 136, shouldActive: true, active: true },
@@ -148,34 +148,32 @@ const symbols = {
     // "OANDA:USDCAD": { resolver: 141, shouldActive: true, active: true },
     // "OANDA:USDJPY": { resolver: 141, shouldActive: true, active: true },
 
-    "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:EURCHF": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:GBPJPY": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:GBPNZD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:GBPAUD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:GBPCAD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:GBPCHF": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:AUDCAD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:AUDNZD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:AUDJPY": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:AUDCHF": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:CHFJPY": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:XAGUSD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:NZDCAD": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:NZDCHF": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:NZDJPY": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:EURGBP": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:CADCHF": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:CADJPY": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:USDTRY": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:XAUUSD": {
-        resolver: 141, shouldActive: true, active: true
-    },
+    // "OANDA:AUDUSD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:NZDUSD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:EURJPY": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:EURCAD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:EURNZD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:EURAUD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:EURCHF": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:GBPJPY": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:GBPNZD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:GBPAUD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:GBPCAD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:GBPCHF": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:AUDCAD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:AUDNZD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:AUDJPY": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:AUDCHF": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:CHFJPY": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:XAGUSD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:NZDCAD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:NZDCHF": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:NZDJPY": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:EURGBP": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:CADCHF": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:CADJPY": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:USDTRY": { resolver: 141, shouldActive: true, active: true },
+    "OANDA:XAUUSD": { resolver: 141, shouldActive: true, active: true },
 }
 
 function formatNumberWithTwoDecimals(number) {
@@ -425,7 +423,26 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
         "CAPITALCOM:EU50": {},
         "CAPITALCOM:CN50": {},
         "TVC:BXY": {},
-        "TVC:EXY": {},
+        "TVC:EXY": {
+            config: {
+                "5m": minuteOfDay % 5 == 0,
+                "15m": minuteOfDay % 15 == 0,
+                "30m": minuteOfDay % 30 == 0,
+                "1h": minuteOfDay == 0,
+                "4h": (minuteOfDay == 0 && [13, 17, 21].includes(hourOfDay)),
+                "1d": (hourOfDay == 13 && minuteOfDay == 0),
+                "1w": (hourOfDay == 13 && minuteOfDay == 0 && dayOfWeek == 0),
+                "1M": (hourOfDay == 13 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
+            },
+            openTimes: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+                "4h": [13, 17, 21],
+                "1d": [13],
+            }
+        },
         "TVC:SXY": {},
         "TVC:JXY": {},
         "TVC:CXY": {},
@@ -435,7 +452,7 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
         "CAPITALCOM:NATURALGAS": {},
         "COMEX:HRC1!": {},
         "MCX:ZINC1!": {},
-        "FX:XAUUSD": {},
+        // "FX:XAUUSD": {},
         "OANDA:EURUSD": {
             config: {
                 "5m": minuteOfDay % 5 == 0,
@@ -1164,8 +1181,8 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                             timestamp = startTime; // Unix timestamp in seconds
                             newV = true;
 
-                            if (((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
-                                var shouldHourChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay , 0));
+                            if (symbolConfigs[fullName].config[timeframe]) {
+                                var shouldHourChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay, 0));
                                 // Calculate the Unix timestamp (in seconds) from the Date object
                                 var shouldHourTimestamp = Math.floor(shouldHourChange.getTime() / 1000);
                                 startTime = shouldHourTimestamp;
@@ -1234,18 +1251,17 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
                     if (allCandles[timeframe][0] != undefined || (symbolConfigs[fullName].config[timeframe]) || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
                         addedTime = 86400;
                         shouldMakeCandle = true;
-                        if (symbolConfigs[fullName].config[timeframe]) {
-
+                        if (symbolConfigs[fullName].config[timeframe] || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
                             startTime = lastOneMinuteCandle.t;
                             timestamp = startTime; // Unix timestamp in seconds
                             newV = true;
 
                             if (((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
-                                var shouldDayChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay - 1, 0));
+                                var shouldChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay - 1, 0));
                                 // Calculate the Unix timestamp (in seconds) from the Date object
-                                var shouldDayTimestamp = Math.floor(shouldDayChange.getTime() / 1000);
-                                startTime = shouldDayTimestamp;
-                                timestamp = shouldDayTimestamp;
+                                var shouldTimestamp = Math.floor(shouldChange.getTime() / 1000);
+                                startTime = shouldTimestamp;
+                                timestamp = shouldTimestamp;
                             }
 
                         } else {
