@@ -115,12 +115,11 @@ const symbols = {
     // "CME_MINI:ES1!": { resolver: 142, shouldActive: true, active: true },
     // "CBOT_MINI:YM1!": { resolver: 143, shouldActive: true, active: true },
     // "VANTAGE:DJ30FT": { resolver: 143, shouldActive: true, active: true },
-    // "CAPITALCOM:DXY": { resolver: 143, shouldActive: true, active: true },
     // "FOREXCOM:DJI": { resolver: 141, shouldActive: true, active: true },
     // "OANDA:SPX500USD": { resolver: 144, shouldActive: true, active: true },
     // "TVC:NDQ": { resolver: 136, shouldActive: true, active: true },
 
-    // "TVC:US20Y": { resolver: 138, shouldActive: true, active: true },
+    "TVC:US20Y": { resolver: 138, shouldActive: true, active: true },
     // "AMEX:GDX": { resolver: 137, shouldActive: true, active: true },
     // "AMEX:GDXJ": { resolver: 138, shouldActive: true, active: true },
     // "AMEX:GLD": { resolver: 137, shouldActive: true, active: true },
@@ -131,7 +130,8 @@ const symbols = {
     // "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: true },
     // "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: true },
     // "TVC:BXY": { resolver: 136, shouldActive: true, active: true },
-    "TVC:EXY": { resolver: 136, shouldActive: true, active: true },
+    // "TVC:DXY": { resolver: 136, shouldActive: true, active: true },
+    // "TVC:EXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:SXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:JXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:CXY": { resolver: 136, shouldActive: true, active: true },
@@ -173,7 +173,234 @@ const symbols = {
     // "OANDA:CADCHF": { resolver: 141, shouldActive: true, active: true },
     // "OANDA:CADJPY": { resolver: 141, shouldActive: true, active: true },
     // "OANDA:USDTRY": { resolver: 141, shouldActive: true, active: true },
-    "OANDA:XAUUSD": { resolver: 141, shouldActive: true, active: true },
+    // "OANDA:XAUUSD": { resolver: 141, shouldActive: true, active: true },
+}
+
+
+async function getConfig(symbolName) {
+    const symbolConfigs = {
+        "TVC:DXY": {
+            0: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [0, 4, 8, 12, 16, 20, 24],
+                "1d": [0, 24],
+                "1w": [0, 24],
+                "1M": [0, 24],
+            },
+            1: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [0, 4, 8, 12, 16, 20, 24],
+                "1d": [0, 24],
+                "1w": [0, 24],
+                "1M": [0, 24],
+            },
+            2: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [0, 4, 8, 12, 16, 20, 24],
+                "1d": [0, 24],
+                "1w": [0, 24],
+                "1M": [0, 24],
+            },
+            3: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [0, 4, 8, 12, 16, 20, 24],
+                "1d": [0, 24],
+                "1w": [0, 24],
+                "1M": [0, 24],
+            },
+            4: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [0, 4, 8, 12, 16, 20, 24],
+                "1d": [0, 24],
+                "1w": [0, 24],
+                "1M": [0, 24],
+            },
+            5: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [0, 4, 8, 12, 16, 20, 24],
+                "1d": [0, 24],
+                "1w": [0, 24],
+                "1M": [0, 24],
+            },
+            6: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [0, 4, 8, 12, 16, 20, 24],
+                "1d": [0, 24],
+                "1w": [0, 24],
+                "1M": [0, 24],
+            },
+            isHalf: false
+        },
+        "OANDA:XAUUSD": {
+            0: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            1: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            2: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            3: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            4: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            5: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            6: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            isHalf: false
+        },
+        "TVC:US20Y": {
+            0: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            1: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            2: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            3: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            4: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            5: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            6: {
+                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                "15m": [0, 15, 30, 45, 60],
+                "30m": [0, 30, 60],
+                "1h": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                "4h": [22, 2, 6, 10, 14, 18],
+                "1d": [22],
+                "1w": [22],
+                "1M": [22],
+            },
+            isHalf: false
+        }
+    }
+
+    return symbolConfigs[symbolName];
 }
 
 function formatNumberWithTwoDecimals(number) {
@@ -196,43 +423,80 @@ async function getSymbolIdByName(symbolName) {
     }
 }
 
-async function makeMyOpenTime(timeFrame, timeFrameOpenTimes, hour, minute) {
+async function makeMyOpenTime(symbolConfig, timeFrame) {
+    const candleTime = new Date();
+    var dayOfMonth = candleTime.getUTCDate();
+    const candleHour = candleTime.getUTCHours();
+    const candleMinute = candleTime.getUTCMinutes();
+    const candleYear = candleTime.getUTCFullYear();
+    const candleMonth = candleTime.getUTCMonth();
+    const dayOfWeek = candleTime.getUTCDay(); //0 is sunday
 
-    var lessThanTarget = null;
-    var myHour = hour
-    var myMinute = minute
-    var year = new Date().getUTCFullYear();   // Change to your desired year
-    var month = new Date().getUTCMonth();     // 0-based index (0 = January, 1 = February, etc.)
-    var day = new Date().getUTCDate();
+    if (timeFrame == "5m" || timeFrame == "15m" || timeFrame == "30m") {
 
-    if (["5m", "15m", "30m"].includes(timeFrame)) {
-        lessThanTarget = timeFrameOpenTimes.filter((timeFrameOpenTime) => timeFrameOpenTime < minute);
-        myMinute = Math.max(...lessThanTarget);
+        const AllArray = symbolConfig[dayOfWeek][timeFrame].filter(num => num >= 0);
+        const filteredArray = symbolConfig[dayOfWeek][timeFrame].filter(num => num > candleMinute);
+
+        // Remove numbers less than candleMinute
+
+        const biggerTime = Math.min(...filteredArray);
+
+        // Find the index of the smallest Number
+        const minIndex = AllArray.indexOf(biggerTime);
+
+        const oneBeforBigger = minIndex != 0 ? AllArray[minIndex - 1] : AllArray[0];
+
+        // yani hanooz be candle badi nareside va bayad edame bede
+        if (oneBeforBigger < candleMinute < biggerTime) {
+
+            return new Date(Date.UTC(candleYear, candleMonth, dayOfMonth, candleHour, oneBeforBigger)).getTime() / 1000;
+        } else {
+            // yani candle jadid bayad baz beshe
+
+            return new Date(Date.UTC(candleYear, candleMonth, dayOfMonth, candleHour, biggerTime)).getTime() / 1000;
+
+        }
+
+
     } else {
-        lessThanTarget = timeFrameOpenTimes.filter((timeFrameOpenTime) => timeFrameOpenTime < hour);
-        myHour = Math.max(...lessThanTarget);    // 24-hour format
+        const AllArray = symbolConfig[dayOfWeek][timeFrame].filter(num => num >= 0);
+        const filteredArray = symbolConfig[dayOfWeek][timeFrame].filter(num => num > candleHour);
+
+        const shouldAdd = symbolConfig.isHalf ? 30 : 0;
+        // Remove numbers less than candleHour
+
+        const shouldRemoveHour = symbolConfig.isHalf ? 1 : 0;
+        // Remove numbers less than candleHour
+
+        if (timeFrame == "1w") {
+            const firstDay = new Date();
+            firstDay.setDate(firstDay.getDate() - firstDay.getDay()); // Set to the first day of the week (Sunday)
+
+            dayOfMonth = firstDay.getUTCDate();
+        }
+
+        if (timeFrame == "1M") {
+            dayOfMonth = 1;
+        }
+
+        const biggerTime = Math.min(...filteredArray);
+        // Find the index of the biggerTime Number
+        const minIndex = AllArray.indexOf(biggerTime);
+
+        const oneBeforBigger = (minIndex != 0 && minIndex != Infinity) ? AllArray[minIndex - 1] : AllArray[0];
+
+
+        // yani hanooz be candle badi nareside va bayad edame bede
+        if (oneBeforBigger < candleHour < biggerTime) {
+            return new Date(Date.UTC(candleYear, candleMonth, dayOfMonth, oneBeforBigger - shouldRemoveHour, 0 + shouldAdd)).getTime() / 1000;
+        } else {
+            // yani candle jadid bayad baz beshe
+            return new Date(Date.UTC(candleYear, candleMonth, dayOfMonth, biggerTime - shouldRemoveHour, 0 + shouldAdd)).getTime() / 1000;
+
+        }
+
     }
 
-    if (timeFrame == "1d") {
-        myMinute = 0
-        myHour = 22
-        day = day - 1
-    }
-
-
-
-    if (lessThanTarget.length > 0) {
-        // Create a new Date object with the specified components
-        var date = new Date(Date.UTC(year, month, day, myHour, myMinute));
-
-        // Calculate the Unix timestamp (in seconds) from the Date object
-        var timestampInSeconds = Math.floor(date.getTime() / 1000);
-        return timestampInSeconds;
-
-    } else {
-
-        return 0;
-    }
 }
 
 
@@ -339,16 +603,139 @@ async function saveCandleDataToPostgreSQL(symbol, timeFrame, newCandle) {
         console.error('Error saving candle data to PostgreSQL:', error);
     }
 }
+
+
 const shouldMakeAllTimeFrames = ['1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w', '1M'];
+// const shouldMakeAllTimeFrames = ['1m', '5m'];
 
-// this function will make other candles
+function getFirstDayOfMonthNotSaturday() {
+    const currentDate = new Date();
+    const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+
+    while (firstDay.getDay() === 6) {
+        // If the first day is Saturday (getDay() returns 6 for Saturday),
+        // increment the day until a non-Saturday is found
+        firstDay.setDate(firstDay.getDate() + 1);
+    }
+
+    return firstDay;
+}
+
+// isHalf be in mani hast ke aya namad rooye 1 baz mishe ya 1 o 30 dar time frame haye 30 1 4 1d
+const checkConfigTime = async (candleTimeStamp, symbolConfig, timeFrame, oneMinuteTime) => {
+
+    const oneMinuteCandleTime = new Date(oneMinuteTime * 1000);
+    const dayOfWeek = oneMinuteCandleTime.getUTCDay(); //0 is sunday
+    const dayOfMonth = oneMinuteCandleTime.getUTCDate();  //0 is sunday
+    const candleHour = oneMinuteCandleTime.getUTCHours();
+    const candleMinute = oneMinuteCandleTime.getUTCMinutes();
+
+    const myCandleTime = new Date(candleTimeStamp * 1000);
+    const myCandleHour = myCandleTime.getUTCHours();
+    const myCandleMinute = myCandleTime.getUTCMinutes();
+
+    if (timeFrame == "5m" || timeFrame == "15m" || timeFrame == "30m") {
+        const filteredArray = symbolConfig[dayOfWeek][timeFrame].filter(num => num > candleMinute);
+        const AllArray = symbolConfig[dayOfWeek][timeFrame].filter(num => num >= 0);
+
+        const biggerTime = Math.min(...filteredArray);
+
+        // Find the index of the smallest Number
+        const minIndex = AllArray.indexOf(biggerTime);
+
+        const oneBeforBigger = minIndex != 0 ? AllArray[minIndex - 1] : AllArray[0];
+
+        // yani hanooz be candle badi nareside va bayad edame bede
+        if (oneBeforBigger <= myCandleMinute && myCandleMinute < biggerTime) {
+            return true;
+        } else {
+            return false;
+
+        }
+
+
+    } else {
+        const filteredArray = symbolConfig[dayOfWeek][timeFrame].filter(num => num > candleHour);
+        var AllArray = symbolConfig[dayOfWeek][timeFrame].filter(num => num >= 0);
+
+
+        const biggerTime = Math.min(...filteredArray);
+
+        // Find the index of the smallest Number
+        const minIndex = AllArray.indexOf(biggerTime);
+
+        const oneBeforBigger = minIndex != 0 ? AllArray[minIndex - 1] : AllArray[0];
+
+        // inja miaym shart haye estesnaye rooz o maho hafte ro mizarim 
+        if (timeFrame == "1d") {
+            if (oneBeforBigger != candleHour) {
+                return true;
+            } else {
+                // yani candle jadid bayad baz beshe
+                return false;
+            }
+        }
+
+        // inja miaym shart haye estesnaye rooz o maho hafte ro mizarim 
+        if (timeFrame == "1w") {
+            if (oneBeforBigger != candleHour && dayOfWeek != 0) {
+                return true;
+            } else {
+                // yani candle jadid bayad baz beshe
+                return false;
+            }
+        }
+
+        if (timeFrame == "1M") {
+            const thisMonth = getFirstDayOfMonthNotSaturday().getDate();
+
+            if (oneBeforBigger != candleHour && dayOfMonth != thisMonth) {
+                return true;
+            } else {
+                // yani candle jadid bayad baz beshe
+                return false;
+            }
+        }
+
+
+        // yani hanooz be candle badi nareside va bayad edame bede
+        if (oneBeforBigger <= myCandleHour && myCandleHour < biggerTime) {
+            return true;
+        } else {
+            // yani candle jadid bayad baz beshe
+            return false;
+        }
+
+    }
+}
+
+
+
+const candleChecker = async (timeFrame, allCandles, symbolConfig, candleStamp) => {
+    // aval check mikonim candle az ghabl vojood darad ya na
+    if (allCandles[timeFrame][0] != undefined) {
+        // check mishavad ke aya bayad edame dade shavad ya kheir
+        // bayad check konim ke data ke alan oomade az lahaze zamani ba config set hast ya na?
+        const checker = await checkConfigTime(allCandles[timeFrame][0].t, symbolConfig, timeFrame, candleStamp)
+        return checker;
+    }
+
+    // agar vojood nadarad barash yeki baz mikonim dar zamane moshakhas
+    else {
+        return false;
+    }
+
+}
+
+
 const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullName, symbolName) => {
-    // now we will make other candles from 1 minute last candle
 
+    // now we will make other candles from 1 minute last candle
     const indexToKeep = shouldMakeAllTimeFrames.indexOf(smallestTimeFrame);
     var resultArray = null
+
     if (indexToKeep !== -1) {
-        resultArray = shouldMakeAllTimeFrames.slice(indexToKeep);
+        resultArray = shouldMakeAllTimeFrames.slice(indexToKeep + 1);
     } else {
         console.log(`The element ${smallestTimeFrame} was not found in the array.`);
     }
@@ -356,1075 +743,154 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
 
     const lastOneMinuteCandle = allCandles[smallestTimeFrame][0];
     const candleStamp = allCandles[smallestTimeFrame][0].t;
-    const now = new Date(candleStamp * 1000);
-    const hourOfDay = now.getUTCHours();
-    const minuteOfDay = now.getUTCMinutes();
-    const dayOfMonth = now.getUTCDate();
-
-    const symbolConfigs = {
-        "INTOTHEBLOCK:BTC_RETAIL": {},
-        "INTOTHEBLOCK:BTC_HASHRATE": {},
-        "INTOTHEBLOCK:BTC_TRADERS": {},
-        "INTOTHEBLOCK:BTC_BEARSVOLUME": {},
-        "INTOTHEBLOCK:BTC_BULLSVOLUME": {},
-        "INTOTHEBLOCK:BTC_TXVOLUME": {},
-        "INTOTHEBLOCK:BTC_TXVOLUMEUSD": {},
-        "INTOTHEBLOCK:ETH_RETAIL": {},
-        "INTOTHEBLOCK:ETH_TRADERS": {},
-        "INTOTHEBLOCK:ETH_BEARSVOLUME": {},
-        "INTOTHEBLOCK:ETH_BULLSVOLUME": {},
-        "INTOTHEBLOCK:ETH_TXVOLUME": {},
-        "INTOTHEBLOCK:ETH_TXVOLUMEUSD": {},
-        "ECONOMICS:USINTR": {},
-        "ECONOMICS:USIRYY": {},
-        "FRED:UNRATE": {},
-        "FRED:GDP": {},
-        "FRED:T5YIE": {},
-        "FRED:T10YIE": {},//1 means every month
-        "FRED:BAMLH0A0HYM2": {},
-        "ECONOMICS:USNFP": {},
-        "NYMEX:MBE1!": {},
-
-
-
-        "XETR:DAX": {},
-        "CRYPTOCAP:BTC.D": {},
-        "CRYPTOCAP:ETH.D": {},
-        "CRYPTOCAP:USDT.D": {},
-        "CRYPTOCAP:OTHERS.D": {},
-        "CRYPTOCAP:Total": {},
-        "CRYPTOCAP:Total2": {},
-        "CRYPTOCAP:Total3": {},
-        "CRYPTOCAP:TOTALDEFI": {},//0 is every day
-        "NASDAQ:FSTOK300": {},
-        "NASDAQ:FSTOK10": {},
-        "NASDAQ:FSTOK40": {},
-        "NASDAQ:FSTOK250": {},
-        "NASDAQ:FSTOKAGG": {},
-        "TVC:US05Y": {},
-        "TVC:US10Y": {},
-        "CME_MINI:NQ1!": {},
-        "CME_MINI:ES1!": {},
-        "CBOT_MINI:YM1!": {},
-        "VANTAGE:DJ30FT": {},
-        "CAPITALCOM:DXY": {},
-        "FOREXCOM:DJI": {},
-        "OANDA:SPX500USD": {},
-        "TVC:NDQ": {},
-
-        "TVC:US20Y": {},
-        "AMEX:GDX": {},
-        "AMEX:GDXJ": {},
-        "AMEX:GLD": {},
-        "FOREXCOM:DJI": {},
-        "CAPITALCOM:US30": {},
-        "NASDAQ:NDX": {},
-        "CAPITALCOM:US500": {},
-        "CAPITALCOM:EU50": {},
-        "CAPITALCOM:CN50": {},
-        "TVC:BXY": {},
-        "TVC:EXY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [13, 17, 21].includes(hourOfDay)),
-                "1d": (hourOfDay == 13 && minuteOfDay == 0),
-                "1w": (hourOfDay == 13 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 13 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
-                "4h": [13, 17, 21],
-                "1d": [13],
-            }
-        },
-        "TVC:SXY": {},
-        "TVC:JXY": {},
-        "TVC:CXY": {},
-        "TVC:AXY": {},
-        "TVC:ZXY": {},
-        "CAPITALCOM:HK50": {},
-        "CAPITALCOM:NATURALGAS": {},
-        "COMEX:HRC1!": {},
-        "MCX:ZINC1!": {},
-        // "FX:XAUUSD": {},
-        "OANDA:EURUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:GBPUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:USDCHF": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:USDCAD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:USDJPY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-
-        "OANDA:AUDUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:NZDUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:EURJPY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:EURCAD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:EURNZD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:EURAUD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:EURCHF": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:GBPJPY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:GBPNZD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:GBPAUD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:GBPCAD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:GBPCHF": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:AUDCAD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:AUDNZD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:AUDJPY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:AUDCHF": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:CHFJPY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:XAGUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:NZDCAD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:NZDCHF": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:NZDJPY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:EURGBP": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:CADCHF": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:CADJPY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:USDTRY": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-        "OANDA:XAUUSD": {
-            config: {
-                "5m": minuteOfDay % 5 == 0,
-                "15m": minuteOfDay % 15 == 0,
-                "30m": minuteOfDay % 30 == 0,
-                "1h": minuteOfDay == 0,
-                "4h": (minuteOfDay == 0 && [22, 2, 6, 10, 14, 18].includes(hourOfDay)),
-                "1d": (hourOfDay == 22 && minuteOfDay == 0),
-                "1w": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0),
-                "1M": (hourOfDay == 22 && minuteOfDay == 0 && dayOfWeek == 0 && dayOfMonth == 1),
-            },
-            openTimes: {
-                "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-                "15m": [0, 15, 30, 45, 60],
-                "30m": [0, 30, 60],
-                "1h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0],
-                "4h": [22, 2, 6, 10, 14, 18],
-                "1d": [22],
-            }
-        },
-    }
+    const symbolConfig = await getConfig(fullName);
 
     if (lastOneMinuteCandle != undefined) {
         for (const timeframe of resultArray) {
-
-            var shouldMakeCandle = false;
+            var shouldContinueCandle = false;
             var addedTime = 0;
             var startTime = 0;
             var newV = false
+            var checker = await candleChecker(timeframe, allCandles, symbolConfig, candleStamp);
             switch (timeframe) {
                 case '5m':
-                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
-
-                        addedTime = 300;
-                        shouldMakeCandle = true;
-
-                        if (symbolConfigs[fullName].config[timeframe]) {
-                            startTime = lastOneMinuteCandle.t;
-                            timestamp = startTime; // Unix timestamp in seconds
-                            newV = true;
-
-                        } else {
-                            startTime = allCandles[timeframe][0].t
-                        }
-                    } else {
-                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
-                        startTime = madeOpenTime
-                        allCandles[timeframe][0] = {
-                            t: madeOpenTime,
-                            T: madeOpenTime + 300,
-                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
-                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
-                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
-                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
-                            v: lastOneMinuteCandle.v,
-                        }
-                    }
+                    addedTime = 300;
                     break;
 
                 case '15m':
-                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
-                        addedTime = 900;
-                        shouldMakeCandle = true;
-                        if (symbolConfigs[fullName].config[timeframe]) {
-                            startTime = lastOneMinuteCandle.t;
-                            timestamp = startTime; // Unix timestamp in seconds
-                            newV = true;
-
-                        } else {
-                            startTime = allCandles[timeframe][0].t
-                        }
-                    } else {
-                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
-                        startTime = madeOpenTime
-
-                        allCandles[timeframe][0] = {
-                            t: madeOpenTime,
-                            T: madeOpenTime + 900,
-                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
-                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
-                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
-                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
-                            v: lastOneMinuteCandle.v,
-                        }
-                    }
-
+                    addedTime = 1500;
                     break;
 
                 case '30m':
-                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
-                        addedTime = 1800;
-                        shouldMakeCandle = true;
-                        if (symbolConfigs[fullName].config[timeframe]) {
-                            startTime = lastOneMinuteCandle.t;
-                            timestamp = startTime; // Unix timestamp in seconds
-                            newV = true;
-
-                        } else {
-                            startTime = allCandles[timeframe][0].t
-                        }
-                    } else {
-                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
-                        startTime = madeOpenTime
-
-
-                        allCandles[timeframe][0] = {
-                            t: madeOpenTime,
-                            T: madeOpenTime + 1800,
-                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
-                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
-                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
-                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
-                            v: lastOneMinuteCandle.v,
-                        }
-                    }
-
+                    addedTime = 3000;
                     break;
 
                 case '1h':
-                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe] || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
-                        addedTime = 3600;
-                        shouldMakeCandle = true;
-                        if (symbolConfigs[fullName].config[timeframe]) {
-                            startTime = lastOneMinuteCandle.t;
-                            timestamp = startTime; // Unix timestamp in seconds
-                            newV = true;
-
-                            if (symbolConfigs[fullName].config[timeframe]) {
-                                var shouldHourChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay, 0));
-                                // Calculate the Unix timestamp (in seconds) from the Date object
-                                var shouldHourTimestamp = Math.floor(shouldHourChange.getTime() / 1000);
-                                startTime = shouldHourTimestamp;
-                                timestamp = shouldHourTimestamp;
-                            }
-
-                        } else {
-                            startTime = allCandles[timeframe][0].t
-                        }
-                    } else {
-                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
-                        startTime = madeOpenTime
-
-                        allCandles[timeframe][0] = {
-                            t: madeOpenTime,
-                            T: madeOpenTime + 3600,
-                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
-                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
-                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
-                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
-                            v: lastOneMinuteCandle.v,
-                        }
-                    }
-
+                    addedTime = 6000;
                     break;
 
                 case '4h':
-                    if (allCandles[timeframe][0] != undefined || (symbolConfigs[fullName].config[timeframe]) || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
-                        addedTime = 14400;
-                        shouldMakeCandle = true;
-                        if (symbolConfigs[fullName].config[timeframe] || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
-                            startTime = lastOneMinuteCandle.t;
-                            timestamp = startTime; // Unix timestamp in seconds
-                            newV = true;
-
-                            if (((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
-                                var shouldChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay - 1, 0));
-                                // Calculate the Unix timestamp (in seconds) from the Date object
-                                var shouldTimestamp = Math.floor(shouldChange.getTime() / 1000);
-                                startTime = shouldTimestamp;
-                                timestamp = shouldTimestamp;
-                            }
-
-
-                        } else {
-                            startTime = allCandles[timeframe][0].t
-                        }
-                    } else {
-                        const madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
-                        startTime = madeOpenTime
-
-                        allCandles[timeframe][0] = {
-                            t: madeOpenTime,
-                            T: madeOpenTime + 14400,
-                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
-                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
-                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
-                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
-                            v: lastOneMinuteCandle.v,
-                        }
-                    }
-
+                    addedTime = 24000;
                     break;
 
                 case '1d':
-                    if (allCandles[timeframe][0] != undefined || (symbolConfigs[fullName].config[timeframe]) || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
-                        addedTime = 86400;
-                        shouldMakeCandle = true;
-                        if (symbolConfigs[fullName].config[timeframe] || ((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
-                            startTime = lastOneMinuteCandle.t;
-                            timestamp = startTime; // Unix timestamp in seconds
-                            newV = true;
-
-                            if (((symbolName.toLowerCase() == "xauusd" || symbolName.toLowerCase() == "xagusd") && hourOfDay == 23 && minuteOfDay == 4)) {
-                                var shouldChange = new Date(Date.UTC(now.getFullYear(), now.getMonth(), dayOfMonth, hourOfDay - 1, 0));
-                                // Calculate the Unix timestamp (in seconds) from the Date object
-                                var shouldTimestamp = Math.floor(shouldChange.getTime() / 1000);
-                                startTime = shouldTimestamp;
-                                timestamp = shouldTimestamp;
-                            }
-
-                        } else {
-                            startTime = allCandles[timeframe][0].t
-                        }
-                    } else {
-                        var madeOpenTime = await makeMyOpenTime(timeframe, symbolConfigs[fullName].openTimes[timeframe], hourOfDay, minuteOfDay);
-                        startTime = madeOpenTime
-
-                        if (madeOpenTime == 0) {
-                            var year = new Date().getUTCFullYear();   // Change to your desired year
-                            var month = new Date().getUTCMonth();     // 0-based index (0 = January, 1 = February, etc.)
-                            dayOfMonth - 1
-                            // Create a new Date object with the specified components
-                            var date = new Date(Date.UTC(year, month, dayOfMonth - 1, symbolConfigs[fullName].openTimes[timeframe][0], 0));
-
-                            // Calculate the Unix timestamp (in seconds) from the Date object
-                            madeOpenTime = Math.floor(date.getTime() / 1000);
-                        }
-
-                        allCandles[timeframe][0] = {
-                            t: madeOpenTime,
-                            T: madeOpenTime + 86400,
-                            o: formatNumberWithTwoDecimals(lastOneMinuteCandle.o),
-                            h: formatNumberWithTwoDecimals(lastOneMinuteCandle.h),
-                            l: formatNumberWithTwoDecimals(lastOneMinuteCandle.l),
-                            c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
-                            v: lastOneMinuteCandle.v,
-                        }
-                    }
-
+                    addedTime = 86400;
                     break;
 
                 case '1w':
-                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
-                        addedTime = 604800;
-                        shouldMakeCandle = true;
-                        if (symbolConfigs[fullName].config[timeframe]) {
-                            startTime = lastOneMinuteCandle.t;
-                            timestamp = startTime; // Unix timestamp in seconds
-                            newV = true;
-                        } else {
-                            startTime = allCandles[timeframe][0].t
-                        }
-                    }
-
+                    addedTime = 604800;
                     break;
 
                 case '1M':
-                    if (allCandles[timeframe][0] != undefined || symbolConfigs[fullName].config[timeframe]) {
-                        addedTime = 2592000;
-                        shouldMakeCandle = true;
-                        if (symbolConfigs[fullName].config[timeframe]) {
-                            startTime = lastOneMinuteCandle.t;
-                            timestamp = startTime; // Unix timestamp in seconds
-                            newV = true;
-
-
-                        } else {
-                            startTime = allCandles[timeframe][0].t
-                        }
-                    }
-
+                    addedTime = 2629743;
                     break;
 
                 default:
-                    shouldMakeCandle = false;
                     addedTime = 0;
                     break;
             }
 
+
+            if (checker) {
+                shouldContinueCandle = true;
+                startTime = allCandles[timeframe][0].t;
+                timestamp = startTime; // Unix timestamp in seconds
+            } else {
+                const madeOpenTime = await makeMyOpenTime(symbolConfig, timeframe);
+                startTime = madeOpenTime
+            }
+
             var shouldBe = 0;
             var openPrice, high, low, closeTime;
-            if (shouldMakeCandle) {
-
-                // this is for v
-                if (!newV && allCandles[timeframe][0] != undefined) {
-
-                    if (lastOneMinuteCandle.v - lastVolume > 0) {
-                        shouldBe = allCandles[timeframe][0].v + (lastOneMinuteCandle.v - lastVolume)
-                    } else {
-                        if (lastVolume != lastOneMinuteCandle.v) {
-                            shouldBe = allCandles[timeframe][0].v + lastOneMinuteCandle.v
-                        } else {
-                            shouldBe = allCandles[timeframe][0].v
-                        }
-                    }
-
-                    openPrice = allCandles[timeframe][0].o;
-                    closeTime = allCandles[timeframe][0].t + addedTime
 
 
-                    if (allCandles[timeframe][0].h < lastOneMinuteCandle.h) {
-                        high = lastOneMinuteCandle.h
-                    } else {
-                        high = allCandles[timeframe][0].h
-                    }
+            // this is for v
+            if (shouldContinueCandle) {
 
-                    if (allCandles[timeframe][0].l > lastOneMinuteCandle.l) {
-                        low = lastOneMinuteCandle.l
-                    } else {
-                        low = allCandles[timeframe][0].l
-                    }
+                if (lastOneMinuteCandle.v - lastVolume > 0) {
+                    shouldBe = allCandles[timeframe][0].v + (lastOneMinuteCandle.v - lastVolume)
                 } else {
-                    // console.log("####################################")
-                    shouldBe = lastOneMinuteCandle.v;
-                    openPrice = lastOneMinuteCandle.o;
+                    if (lastVolume != lastOneMinuteCandle.v) {
+                        shouldBe = allCandles[timeframe][0].v + lastOneMinuteCandle.v
+                    } else {
+                        shouldBe = allCandles[timeframe][0].v
+                    }
+                }
+
+                openPrice = allCandles[timeframe][0].o;
+                closeTime = allCandles[timeframe][0].t + addedTime
+
+
+                if (allCandles[timeframe][0].h < lastOneMinuteCandle.h) {
                     high = lastOneMinuteCandle.h
-                    low = lastOneMinuteCandle.l
-                    closeTime = lastOneMinuteCandle.t + addedTime
-                }
-
-
-
-
-                const newCandle = {
-                    t: startTime,
-                    T: closeTime,
-                    o: formatNumberWithTwoDecimals(openPrice),
-                    h: formatNumberWithTwoDecimals(high),
-                    l: formatNumberWithTwoDecimals(low),
-                    c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
-                    v: shouldBe,
-                };
-
-
-                // now we will add to each time Frame
-                const existingCandleIndex = allCandles[timeframe].findIndex((candle) => candle.t == newCandle.t);
-
-                if (existingCandleIndex >= 0) {
-                    // Update existing candle
-                    allCandles[timeframe][existingCandleIndex] = newCandle;
                 } else {
-
-                    // Add new candle at the beginning
-                    allCandles[timeframe].unshift(newCandle);
-
-                    if (allCandles[timeframe].length >= 3) {
-                        // Remove excess candles
-                        allCandles[timeframe].pop();
-
-                        if (allCandles[timeframe][1] != undefined) {
-                            const shouldSaveCandle = {
-                                t: allCandles[timeframe][1].t,
-                                T: allCandles[timeframe][1].T,
-                                c: allCandles[timeframe][1].c,
-                                h: allCandles[timeframe][1].h,
-                                l: allCandles[timeframe][1].l,
-                                o: allCandles[timeframe][1].o,
-                                v: allCandles[timeframe][1].v,
-                            };
-
-                            await saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
-                        }
-                    }
-
-
+                    high = allCandles[timeframe][0].h
                 }
+
+                if (allCandles[timeframe][0].l > lastOneMinuteCandle.l) {
+                    low = lastOneMinuteCandle.l
+                } else {
+                    low = allCandles[timeframe][0].l
+                }
+            } else {
+                // console.log("####################################")
+                shouldBe = lastOneMinuteCandle.v;
+                openPrice = lastOneMinuteCandle.o;
+                high = lastOneMinuteCandle.h
+                low = lastOneMinuteCandle.l
+                closeTime = lastOneMinuteCandle.t + addedTime
+            }
+
+
+
+
+            const newCandle = {
+                t: startTime,
+                T: closeTime,
+                o: formatNumberWithTwoDecimals(openPrice),
+                h: formatNumberWithTwoDecimals(high),
+                l: formatNumberWithTwoDecimals(low),
+                c: formatNumberWithTwoDecimals(lastOneMinuteCandle.c),
+                v: shouldBe,
+            };
+
+
+            // now we will add to each time Frame
+            const existingCandleIndex = allCandles[timeframe].findIndex((candle) => candle.t == newCandle.t);
+
+            if (existingCandleIndex >= 0) {
+                // Update existing candle
+                allCandles[timeframe][existingCandleIndex] = newCandle;
+            } else {
+
+                // Add new candle at the beginning
+                allCandles[timeframe].unshift(newCandle);
+
+                if (allCandles[timeframe].length >= 3) {
+                    // Remove excess candles
+                    allCandles[timeframe].pop();
+
+                    if (allCandles[timeframe][1] != undefined) {
+                        const shouldSaveCandle = {
+                            t: allCandles[timeframe][1].t,
+                            T: allCandles[timeframe][1].T,
+                            c: allCandles[timeframe][1].c,
+                            h: allCandles[timeframe][1].h,
+                            l: allCandles[timeframe][1].l,
+                            o: allCandles[timeframe][1].o,
+                            v: allCandles[timeframe][1].v,
+                        };
+
+                        await saveCandleDataToPostgreSQL(symbolName, timeframe, shouldSaveCandle);
+                    }
+                }
+
+
             }
         }
         redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
-    }
 
+    }
 }
 
 
@@ -1441,7 +907,7 @@ const shower = async (results, allCandles, exchange, symbolName) => {
             h: formatNumberWithTwoDecimals(candleData[2]),
             l: formatNumberWithTwoDecimals(candleData[3]),
             c: formatNumberWithTwoDecimals(candleData[4]),
-            v: candleData[5],
+            v: candleData[5] != undefined ? candleData[5] : 0,
         };
 
 
@@ -1480,6 +946,8 @@ const shower = async (results, allCandles, exchange, symbolName) => {
                 }
             }
         }
+
+
 
         makeOtherCandles(allCandles, "1m", lastVolume, exchange + ":" + symbolName, symbolName)
 
