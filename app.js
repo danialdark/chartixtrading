@@ -119,7 +119,7 @@ const symbols = {
     // "OANDA:SPX500USD": { resolver: 144, shouldActive: true, active: true },
     // "TVC:NDQ": { resolver: 136, shouldActive: true, active: true },
 
-    // "TVC:US20Y": { resolver: 138, shouldActive: true, active: true },
+    "TVC:US20Y": { resolver: 138, shouldActive: true, active: true },
     // "AMEX:GDX": { resolver: 137, shouldActive: true, active: true },
     // "AMEX:GDXJ": { resolver: 138, shouldActive: true, active: true },
     // "AMEX:GLD": { resolver: 137, shouldActive: true, active: true },
@@ -130,7 +130,7 @@ const symbols = {
     // "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: true },
     // "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: true },
     // "TVC:BXY": { resolver: 136, shouldActive: true, active: true },
-    // "TVC:DXY": { resolver: 136, shouldActive: true, active: true },
+    "TVC:DXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:EXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:SXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:JXY": { resolver: 136, shouldActive: true, active: true },
