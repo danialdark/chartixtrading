@@ -8,7 +8,7 @@ const port = 3000;
 const redis = new Redis({
     host: 'localhost',
     port: '6379',
-    password: 'D@n!@l12098',
+    password: '',
     enableCompression: true,
 });
 var pipeline = redis.pipeline();
@@ -119,7 +119,7 @@ const symbols = {
     // "OANDA:SPX500USD": { resolver: 144, shouldActive: true, active: true },
     // "TVC:NDQ": { resolver: 136, shouldActive: true, active: true },
 
-    "TVC:US20Y": { resolver: 138, shouldActive: true, active: true },
+    // "TVC:US20Y": { resolver: 138, shouldActive: true, active: true },
     // "AMEX:GDX": { resolver: 137, shouldActive: true, active: true },
     // "AMEX:GDXJ": { resolver: 138, shouldActive: true, active: true },
     // "AMEX:GLD": { resolver: 137, shouldActive: true, active: true },
@@ -130,7 +130,7 @@ const symbols = {
     // "CAPITALCOM:EU50": { resolver: 144, shouldActive: true, active: true },
     // "CAPITALCOM:CN50": { resolver: 144, shouldActive: true, active: true },
     // "TVC:BXY": { resolver: 136, shouldActive: true, active: true },
-    "TVC:DXY": { resolver: 136, shouldActive: true, active: true },
+    // "TVC:DXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:EXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:SXY": { resolver: 136, shouldActive: true, active: true },
     // "TVC:JXY": { resolver: 136, shouldActive: true, active: true },
@@ -479,7 +479,13 @@ async function makeMyOpenTime(symbolConfig, timeFrame) {
             dayOfMonth = 1;
         }
 
-        const biggerTime = Math.min(...filteredArray);
+        var biggerTime = Math.min(...filteredArray);
+
+        if (biggerTime == undefined || biggerTime == Infinity) {
+
+            return new Date(Date.UTC(candleYear, candleMonth, dayOfMonth, AllArray[AllArray.length - 1] - shouldRemoveHour, 0 + shouldAdd)).getTime() / 1000;
+
+        }
         // Find the index of the biggerTime Number
         const minIndex = AllArray.indexOf(biggerTime);
 
@@ -606,7 +612,7 @@ async function saveCandleDataToPostgreSQL(symbol, timeFrame, newCandle) {
 
 
 const shouldMakeAllTimeFrames = ['1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w', '1M'];
-// const shouldMakeAllTimeFrames = ['1m', '5m'];
+// const shouldMakeAllTimeFrames = ["1m", "4h"];
 
 function getFirstDayOfMonthNotSaturday() {
     const currentDate = new Date();
@@ -659,12 +665,26 @@ const checkConfigTime = async (candleTimeStamp, symbolConfig, timeFrame, oneMinu
         var AllArray = symbolConfig[dayOfWeek][timeFrame].filter(num => num >= 0);
 
 
-        const biggerTime = Math.min(...filteredArray);
+        var biggerTime = Math.min(...filteredArray);
+
+
 
         // Find the index of the smallest Number
         const minIndex = AllArray.indexOf(biggerTime);
 
-        const oneBeforBigger = minIndex != 0 ? AllArray[minIndex - 1] : AllArray[0];
+        var oneBeforBigger = minIndex != 0 ? AllArray[minIndex - 1] : AllArray[0];
+
+        if (biggerTime == undefined || biggerTime == Infinity) {
+
+            biggerTime = AllArray[AllArray.length - 1];
+            oneBeforBigger = AllArray[0];
+
+            if (biggerTime <= myCandleHour || myCandleHour >= oneBeforBigger) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
         // inja miaym shart haye estesnaye rooz o maho hafte ro mizarim 
         if (timeFrame == "1d") {
@@ -950,7 +970,6 @@ const shower = async (results, allCandles, exchange, symbolName) => {
 
 
         makeOtherCandles(allCandles, "1m", lastVolume, exchange + ":" + symbolName, symbolName)
-
         redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
     });
 
