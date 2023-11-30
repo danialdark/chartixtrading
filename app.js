@@ -481,7 +481,7 @@ async function makeMyOpenTime(symbolConfig, timeFrame) {
 
         var biggerTime = Math.min(...filteredArray);
         if (biggerTime == undefined || biggerTime == Infinity || biggerTime == AllArray[0]) {
-            return new Date(Date.UTC(candleYear, candleMonth, dayOfMonth, AllArray[AllArray.length - 1] - shouldRemoveHour, 0 + shouldAdd)).getTime() / 1000;
+            return new Date(Date.UTC(candleYear, candleMonth, dayOfMonth-1, AllArray[AllArray.length - 1] - shouldRemoveHour, 0 + shouldAdd)).getTime() / 1000;
 
         }
         // Find the index of the biggerTime Number
