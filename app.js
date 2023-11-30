@@ -8,7 +8,7 @@ const port = 3000;
 const redis = new Redis({
     host: 'localhost',
     port: '6379',
-    password: 'D@n!@l12098',
+    password: '',
     enableCompression: true,
 });
 var pipeline = redis.pipeline();
@@ -480,9 +480,7 @@ async function makeMyOpenTime(symbolConfig, timeFrame) {
         }
 
         var biggerTime = Math.min(...filteredArray);
-
-        if (biggerTime == undefined || biggerTime == Infinity) {
-
+        if (biggerTime == undefined || biggerTime == Infinity || biggerTime == AllArray[0]) {
             return new Date(Date.UTC(candleYear, candleMonth, dayOfMonth, AllArray[AllArray.length - 1] - shouldRemoveHour, 0 + shouldAdd)).getTime() / 1000;
 
         }
@@ -674,7 +672,8 @@ const checkConfigTime = async (candleTimeStamp, symbolConfig, timeFrame, oneMinu
 
         var oneBeforBigger = minIndex != 0 ? AllArray[minIndex - 1] : AllArray[0];
 
-        if (biggerTime == undefined || biggerTime == Infinity) {
+        if (biggerTime == undefined || biggerTime == Infinity || biggerTime == AllArray[0]) {
+
 
             biggerTime = AllArray[AllArray.length - 1];
             oneBeforBigger = AllArray[0];
@@ -970,6 +969,7 @@ const shower = async (results, allCandles, exchange, symbolName) => {
 
 
         makeOtherCandles(allCandles, "1m", lastVolume, exchange + ":" + symbolName, symbolName)
+        // console.log(allCandles)
         redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
     });
 
