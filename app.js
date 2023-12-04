@@ -3103,7 +3103,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "CRYPTOCAP:BTCD": {
+        "CRYPTOCAP:BTC.D": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -3176,7 +3176,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "CRYPTOCAP:ETHD": {
+        "CRYPTOCAP:ETH.D": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -3249,7 +3249,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "CRYPTOCAP:USDTD": {
+        "CRYPTOCAP:USDT.D": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -3322,7 +3322,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "CRYPTOCAP:OTHERSD": {
+        "CRYPTOCAP:OTHERS.D": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
