@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const redis = new Redis({
-    host: '95.217.151.68',
+    host: '87.107.190.181',
     port: '6379',
     password: 'D@n!@l12098',
     enableCompression: true,
