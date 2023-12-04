@@ -8404,7 +8404,9 @@ const shower = async (results, allCandles, exchange, symbolName) => {
 
         const existingCandleIndex = allCandles['1m'].findIndex((candle) => candle.t == newCandle.t);
 
-
+        if (symbolName == "XAUUSD") {
+            symbolName = "FXAUUSD"
+        }
         if (existingCandleIndex >= 0) {
             // Update existing candle
             allCandles['1m'][existingCandleIndex] = newCandle;
