@@ -8436,8 +8436,8 @@ const shower = async (results, allCandles, exchange, symbolName) => {
 
 
         makeOtherCandles(allCandles, "1m", lastVolume, exchange + ":" + symbolName, symbolName)
-        // console.log(allCandles)
         redis.pipeline().set(`${symbolName.toLowerCase()}`, JSON.stringify(allCandles)).exec();
+        console.log(allCandles)
     });
 
 
