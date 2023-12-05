@@ -6753,7 +6753,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "COMEX:HRC!": {
+        "COMEX:HRC1!": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -6826,7 +6826,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "COMEX:HG!": {
+        "COMEX:HG1!": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -7118,7 +7118,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "MCX:ZINC!": {
+        "MCX:ZINC1!": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
