@@ -8393,7 +8393,7 @@ const shower = async (results, allCandles, exchange, symbolName) => {
             c: formatNumberWithTwoDecimals(candleData[4]),
             v: candleData[5] != undefined ? candleData[5] : 0,
         };
-
+        console.log(result)
 
         if (allCandles['1m'][0] != undefined) {
             lastVolume = allCandles['1m'][0].v;
