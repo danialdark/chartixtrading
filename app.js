@@ -8453,7 +8453,7 @@ async function startStream(exchange, symbolName, resolver, allCandles, number) {
         allCandles = redisData
     }
 
-
+    console.log(redisData)
 
     ws.on('open', () => {
         console.log(`Connected to WebSocket server ${exchange + ":" + symbolName}`);
@@ -8516,7 +8516,6 @@ async function startStreams(symbols) {
             
             if (symbols[symbol].shouldActive && symbols[symbol].active == false) {
                 var pairArray = symbol.split(":");
-                console.log(pairArray)
                 const allCandles = { "1m": [], "5m": [], "15m": [], "30m": [], "1h": [], "4h": [], "1d": [], "1w": [], "1M": [] };
 
                 await new Promise((resolve) => {
