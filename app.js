@@ -8511,7 +8511,7 @@ async function startStreams(symbols) {
 
             if (symbols[symbol].shouldActive && symbols[symbol].active == false) {
                 var pairArray = symbol.split(":");
-                const allCandles = { "1m": [], "5m": [], "15m": [], "30m": [], "1h": [], "4h": [], "1d": [], "1w": [], "1M": [] };
+                var allCandles = { "1m": [], "5m": [], "15m": [], "30m": [], "1h": [], "4h": [], "1d": [], "1w": [], "1M": [] };
 
                 await new Promise((resolve) => {
                     setTimeout(async () => {
