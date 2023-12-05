@@ -8443,13 +8443,13 @@ const shower = async (results, allCandles, exchange, symbolName) => {
 
 
 async function startStream(exchange, symbolName, resolver, allCandles, number) {
-    const ws =  new WebSocket(serverurltoken[number], {
+    const ws = new WebSocket(serverurltoken[number], {
         headers: headers
     });
 
- 
 
-    ws.on('open', () => {
+
+    ws.on('open', async () => {
         console.log(`Connected to WebSocket server ${exchange + ":" + symbolName}`);
 
 
@@ -8468,6 +8468,12 @@ async function startStream(exchange, symbolName, resolver, allCandles, number) {
         ws.send(timeZone);
         ws.send(symbol);
         ws.send(series);
+
+        // first we will change allCandles if redis exist
+        var redisData = await moveRedisToRam(symbolName.toLowerCase())
+        if (redisData != null) {
+            allCandles = redisData
+        }
 
 
         setInterval(() => {
