@@ -7191,7 +7191,7 @@ async function getConfig(symbolName) {
             },
             isHalf: true
         },
-        "FX:XAUUSD": {
+        "FX:FXAUUSD": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -7849,7 +7849,6 @@ async function getConfig(symbolName) {
             isHalf: false
         },
     }
-
     return symbolConfigs[symbolName];
 }
 
@@ -8076,7 +8075,6 @@ function getFirstDayOfMonthNotSaturday() {
 
 // isHalf be in mani hast ke aya namad rooye 1 baz mishe ya 1 o 30 dar time frame haye 30 1 4 1d
 const checkConfigTime = async (candleTimeStamp, symbolConfig, timeFrame, oneMinuteTime) => {
-
     const oneMinuteCandleTime = new Date(oneMinuteTime * 1000);
     const dayOfWeek = oneMinuteCandleTime.getUTCDay(); //0 is sunday
     const dayOfMonth = oneMinuteCandleTime.getUTCDate();  //0 is sunday
@@ -8224,11 +8222,12 @@ const makeOtherCandles = async (allCandles, smallestTimeFrame, lastVolume, fullN
 
     const lastOneMinuteCandle = allCandles[smallestTimeFrame][0];
     const candleStamp = allCandles[smallestTimeFrame][0].t;
-    const symbolConfig = await getConfig(fullName);
 
     if (symbolName == "XAUUSD") {
         symbolName = "FXAUUSD"
     }
+
+    const symbolConfig = await getConfig(fullName);
 
     if (lastOneMinuteCandle != undefined) {
         for (const timeframe of resultArray) {
@@ -8403,10 +8402,10 @@ const shower = async (results, allCandles, exchange, symbolName) => {
 
 
         const existingCandleIndex = allCandles['1m'].findIndex((candle) => candle.t == newCandle.t);
-
         if (symbolName == "XAUUSD") {
             symbolName = "FXAUUSD"
         }
+
         if (existingCandleIndex >= 0) {
             // Update existing candle
             allCandles['1m'][existingCandleIndex] = newCandle;
