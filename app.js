@@ -5001,7 +5001,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "CME_MINI:NQ!": {
+        "CME_MINI:NQ1!": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -5074,7 +5074,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "CME_MINI:ES!": {
+        "CME_MINI:ES1!": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -5147,7 +5147,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "CBOT_MINI:YM!": {
+        "CBOT_MINI:YM1!": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -6972,7 +6972,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "FXCM:USOILSPOT": {
+        "FX:USOILSPOT": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
@@ -7045,7 +7045,7 @@ async function getConfig(symbolName) {
             },
             isHalf: false
         },
-        "FXCM:UKOILSPOT": {
+        "FX:UKOILSPOT": {
             0: {
                 "5m": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
                 "15m": [0, 15, 30, 45, 60],
