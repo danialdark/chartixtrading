@@ -8518,7 +8518,7 @@ async function startStreams(symbols) {
                         counter = counter == 1 ? 0 : 1;
 
                         // first we will change allCandles if redis exist
-                        var redisData = await moveRedisToRam(symbolName.toLowerCase())
+                        var redisData = await moveRedisToRam(pairArray[1].toLowerCase())
                         if (redisData != null) {
                             allCandles = redisData
                         }
