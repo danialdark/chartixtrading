@@ -8469,11 +8469,6 @@ async function startStream(exchange, symbolName, resolver, allCandles, number) {
         ws.send(symbol);
         ws.send(series);
 
-        // first we will change allCandles if redis exist
-        var redisData = await moveRedisToRam(symbolName.toLowerCase())
-        if (redisData != null) {
-            allCandles = redisData
-        }
 
 
         setInterval(() => {
@@ -8519,8 +8514,15 @@ async function startStreams(symbols) {
                 const allCandles = { "1m": [], "5m": [], "15m": [], "30m": [], "1h": [], "4h": [], "1d": [], "1w": [], "1M": [] };
 
                 await new Promise((resolve) => {
-                    setTimeout(() => {
+                    setTimeout(async () => {
                         counter = counter == 1 ? 0 : 1;
+
+                        // first we will change allCandles if redis exist
+                        var redisData = await moveRedisToRam(symbolName.toLowerCase())
+                        if (redisData != null) {
+                            allCandles = redisData
+                        }
+
                         startStream(pairArray[0], pairArray[1], symbols[symbol].resolver, allCandles, counter);
                         symbols[symbol].active = true;
                         resolve();
