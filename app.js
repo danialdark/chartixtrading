@@ -99,9 +99,9 @@ const symbols = {
     "CRYPTOCAP:ETH.D": { resolver: 144, shouldActive: true, active: true },
     "CRYPTOCAP:USDT.D": { resolver: 145, shouldActive: true, active: true },
     "CRYPTOCAP:OTHERS.D": { resolver: 147, shouldActive: true, active: true },
-    "CRYPTOCAP:Total": { resolver: 144, shouldActive: true, active: true },
-    "CRYPTOCAP:Total2": { resolver: 145, shouldActive: true, active: true },
-    "CRYPTOCAP:Total3": { resolver: 145, shouldActive: true, active: true },
+    "CRYPTOCAP:TOTAL": { resolver: 144, shouldActive: true, active: true },
+    "CRYPTOCAP:TOTAL2": { resolver: 145, shouldActive: true, active: true },
+    "CRYPTOCAP:TOTAL3": { resolver: 145, shouldActive: true, active: true },
     "CRYPTOCAP:TOTALDEFI": { resolver: 148, shouldActive: true, active: true },//0 is every day
     "NASDAQ:FSTOK300": { resolver: 144, shouldActive: true, active: true },
     "NASDAQ:FSTOK10": { resolver: 143, shouldActive: true, active: true },
